@@ -18,9 +18,9 @@ export const qaArray: qaItem[] = [{
   q: `What are the next features that will be implemented`,
   a: `Next features should be, in order:
 
-  * The ability to trade assets against any ERC20 token that belongs to the Aavegotchi ecosystem. This will allow users to gop some OTC with alchemicas or GLTR.
+  * The ability to trade assets against any ERC20 token that belongs to the Aavegotchi ecosystem. This will allow users to do some OTC with alchemicas or GLTR.
   * Include all aavegotchi ecosystem missing assets. Parcels, all forges items are the priority.
-  * Last we would lile to allow users to trade assets vs assets. For example i could trade 1 gotchi + some wearables against another gotchi + GLTR.
+  * Last we would like to allow users to trade assets vs assets. For example I could trade 1 gotchi + some wearables against another gotchi + GLTR.
   Actually all those features are already implemented in the smart contract, but not in the UI. 
   `
 }, {
@@ -41,6 +41,6 @@ export const qaArray: qaItem[] = [{
   a: `Yes, it means the owner could make changes to the code. This is still early code and it deals with real assets so we prefer to keep the ability to fix any bugs that arise. Right now the owner is a 2 of 3 multisig including the devs and a trusted member of the community. The ownership of the proxy can also be renounced eventually.`
 }, {
   q: `What is the admin address and who controls it ?`,
-  a: `This the address that can manage the list of available token contracts that can be traded for or against. If new asset are introduced in the ecosystem it will allow to add them. It is also able to rescue assets from the escrow in case of a bug with the contract or someone send something to the contract by error. Right now this is set to  the same 2 of 3 multisig that include the devs and a trusted member of the community. `
+  a: `This is the address that can manage the list of available token contracts that can be traded for or against. If new asset are introduced in the ecosystem it will allow to add them. It is also able to rescue assets from the escrow in case of a bug with the contract or someone send something to the contract by error. Right now this is set to  the same 2 of 3 multisig that include the devs and a trusted member of the community. `
 }
 ]

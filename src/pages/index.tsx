@@ -4,13 +4,13 @@ import { useGotchisSvgQuery } from "@/graphql/svg/__generated__/types";
 import Link from "next/link";
 
 const Home = () => {
-  
+
   return (
     <ClientOnly>
-      
+
       <div className="font-katin font-medium text-2xl">
         <p>Hello & Welcome to Gotchiswap frens!</p>
-        <p>Gotchiswap is an OTC trading platform for Aavegotchis.</p>
+        <p>Gotchiswap is an OTC trading platform for Aavegotchi assets.</p>
         <p>The platform is free to use and takes 0 fees.</p>
         <p>
           Its goal is to provide a non custodial, trustless way for individuals
