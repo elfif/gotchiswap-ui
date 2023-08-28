@@ -44,4 +44,10 @@
     list-style: disc !important;
     margin: 0 !important;
   }
+
+  #faq-container a em {
+    --tw-text-opacity: 1;
+    color: rgb(255 163 253 / var(--tw-text-opacity));
+    text-decoration: underline;
+  }
 }
