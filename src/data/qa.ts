@@ -24,6 +24,14 @@ export const qaArray: qaItem[] = [{
   Actually all those features are already implemented in the smart contract, but not in the UI. 
   `
 }, {
+  q: `Is the contract audited ?`,
+  a: `No, but the contract is verified on polygonscan and the code is open source.
+  * [*Click here to access the contract on polygonscan*](https://polygonscan.com/address/0xfe4b96f1860c5a2a09cd4bd5c341632c9e9486e6)
+  * [*Click here to access the contract on github*](https://github.com/pgendreau/gotchiswap-contracts)`
+}, {
+  q: `Is the dapp open source ?`,
+  a: `Yes you can find the code on a [*github public repo:*](https://github.com/elfif/gotchiswap-ui)`,
+}, {
   q: `What technologies are used for the GotchiSwap dapp / frontend?`,
   a: `We used the following technologies:
 
@@ -31,11 +39,6 @@ export const qaArray: qaItem[] = [{
   * TailwindCss for stylings
   * Wagmi.sh and Web3Modal for wallet connection and transactions.
   * Apollo + Codegen for the graphql client.`
-}, {
-  q: `Is the contract audited ?`,
-  a: `No, but the contract is verified on polygonscan and the code is open source.
-  * [*Click here to access the contract on polygonscan*](https://polygonscan.com/address/0xfe4b96f1860c5a2a09cd4bd5c341632c9e9486e6)
-  * [*Click here to access the contract on github*](https://github.com/pgendreau/gotchiswap-contracts)`
 }, {
   q: `But it is upgradable, can it be rugged ?`,
   a: `Yes, it means the owner could make changes to the code. This is still early code and it deals with real assets so we prefer to keep the ability to fix any bugs that arise. Right now the owner is a 2 of 3 multisig including the devs and a trusted member of the community. The ownership of the proxy can also be renounced eventually.`

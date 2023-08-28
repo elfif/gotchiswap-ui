@@ -14,7 +14,7 @@ const faq = () => {
           any other questions or suggestions, please contact us
         </p>
       </div>
-      <div className="flex flex-col gap-y-5 pt-5">
+      <div className="flex flex-col gap-y-5 pt-5" id="faq-container">
         {qaArray.map((qa, index) => (
           <div key={index} className="flex flex-col gap-y-2">
             <ReactMarkdown
