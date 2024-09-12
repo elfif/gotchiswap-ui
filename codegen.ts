@@ -15,7 +15,7 @@ const config: CodegenConfig = {
             }
         },
         "src/graphql/svg/__generated__/types.ts": {
-            schema: "https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-svg",
+            schema: "https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-svg-matic/api",
             documents: ["src/graphql/svg/queries/*.ts", "src/graphql/svg/fragments/*.ts"],
             // preset: 'client'
             plugins: ['typescript', 'typescript-operations', 'typescript-react-apollo'],
