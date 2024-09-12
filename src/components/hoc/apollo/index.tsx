@@ -7,7 +7,7 @@ export const InjectApollo = ( props: PropsWithChildren) => {
       });
     
       const svgLink = new HttpLink({
-        uri: "https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-svg",
+        uri: "https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-svg-matic/api",
       });
     
       const client = new ApolloClient({
