@@ -62,7 +62,7 @@ export const TxModal = (props: { txContext: TxContextType }) => {
                         </div>
                         <div className={classNames((!props.txContext.status || props.txContext.hash === "0x0") && 'text-purple-950')}>
                           <a
-                            href={`https://polygonscan.com/tx/${props.txContext.hash}`}
+                            href={`https://basescan.org/tx/${props.txContext.hash}`}
                             target="_blank"
                           >
                             Tx hash: {shortenAddress(props.txContext.hash)}

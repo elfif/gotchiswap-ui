@@ -19,6 +19,7 @@ export type Scalars = {
   BigInt: { input: any; output: any; }
   Bytes: { input: any; output: any; }
   Int8: { input: any; output: any; }
+  Timestamp: { input: any; output: any; }
 };
 
 export type Aavegotchi = {
@@ -133,6 +134,11 @@ export enum Aavegotchi_OrderBy {
   Svg = 'svg'
 }
 
+export enum Aggregation_Interval {
+  Day = 'day',
+  Hour = 'hour'
+}
+
 export type BlockChangedFilter = {
   number_gte: Scalars['Int']['input'];
 };
@@ -180,43 +186,14 @@ export type QueryAavegotchisArgs = {
   where?: InputMaybe<Aavegotchi_Filter>;
 };
 
-export type Subscription = {
-  __typename?: 'Subscription';
-  /** Access to subgraph metadata */
-  _meta?: Maybe<_Meta_>;
-  aavegotchi?: Maybe<Aavegotchi>;
-  aavegotchis: Array<Aavegotchi>;
-};
-
-
-export type Subscription_MetaArgs = {
-  block?: InputMaybe<Block_Height>;
-};
-
-
-export type SubscriptionAavegotchiArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionAavegotchisArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Aavegotchi_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Aavegotchi_Filter>;
-};
-
 export type _Block_ = {
   __typename?: '_Block_';
   /** The hash of the block */
   hash?: Maybe<Scalars['Bytes']['output']>;
   /** The block number */
   number: Scalars['Int']['output'];
+  /** The hash of the parent block */
+  parentHash?: Maybe<Scalars['Bytes']['output']>;
   /** Integer representation of the timestamp stored in blocks for the chain */
   timestamp?: Maybe<Scalars['Int']['output']>;
 };
@@ -229,7 +206,6 @@ export type _Meta_ = {
    * will be null if the _meta field has a block constraint that asks for
    * a block number. It will be filled if the _meta field has no block constraint
    * and therefore asks for the latest  block
-   *
    */
   block: _Block_;
   /** The deployment ID */
