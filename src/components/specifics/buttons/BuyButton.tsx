@@ -6,14 +6,14 @@ import {
 import { SaleV2 } from "@/types/types";
 import {
   useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
+  useSimulateContract,
+  useWaitForTransactionReceipt,
 } from "wagmi";
 import { TxModal } from "../modals/tx/TxModal";
 import router from "next/router";
 
 export const BuyButton = (props: { sale: SaleV2 }) => {
-  const prepareBuyTx = usePrepareContractWrite({
+  const prepareBuyTx = useSimulateContract({
     address: convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS),
     abi: gotchiswapAbi,
     functionName: "concludeSale",
@@ -22,7 +22,7 @@ export const BuyButton = (props: { sale: SaleV2 }) => {
 
   const buyTx = useContractWrite(prepareBuyTx.config);
 
-  const waitForTx = useWaitForTransaction({
+  const waitForTx = useWaitForTransactionReceipt({
     hash: buyTx.data?.hash,
   });
 

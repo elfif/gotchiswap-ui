@@ -10,8 +10,8 @@ import { Dispatch, SetStateAction, useContext, useState } from "react";
 import {
   useAccount,
   useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
+  useSimulateContract,
+  useWaitForTransactionReceipt,
 } from "wagmi";
 import {
   convertAddressType,
@@ -140,7 +140,7 @@ const TxButton = (props: {
   const preparedPrices = preparePricesArray(props.price);
 
   // Prepare the tx
-  const preparedTx = usePrepareContractWrite({
+  const preparedTx = useSimulateContract({
     address: process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS,
     abi: gotchiswapAbi,
     functionName: "createSale",
@@ -160,7 +160,7 @@ const TxButton = (props: {
   // Initialize the tx
   const txWriteData = useContractWrite(preparedTx.config);
 
-  const txWaitData = useWaitForTransaction({ hash: txWriteData.data?.hash });
+  const txWaitData = useWaitForTransactionReceipt({ hash: txWriteData.data?.hash });
 
   let txContext: TxContextType = {
     operation: "Create OTC offer",

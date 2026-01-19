@@ -5,15 +5,15 @@ import { SaleV2, TxContextType } from "@/types/types";
 import { BaseError } from "viem";
 import {
   useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
+  useSimulateContract,
+  useWaitForTransactionReceipt,
 } from "wagmi";
 import { TxModal } from "../modals/tx/TxModal";
 import { useRouter } from "next/router";
 
 export const AbortSaleButton = (props: { sale: SaleV2 }) => {
   const router = useRouter();
-  const abortTxData = usePrepareContractWrite({
+  const abortTxData = useSimulateContract({
     address: convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS),
     abi: gotchiswapAbi,
     functionName: "abortSale",
@@ -23,7 +23,7 @@ export const AbortSaleButton = (props: { sale: SaleV2 }) => {
 
   const txWriteData = useContractWrite(abortTxData.config);
 
-  const txWaitData = useWaitForTransaction({
+  const txWaitData = useWaitForTransactionReceipt({
     hash: txWriteData.data?.hash,
   });
   
