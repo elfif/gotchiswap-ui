@@ -8,8 +8,8 @@ import { SaleV2 } from "@/types/types";
 import { Dispatch, SetStateAction, useEffect } from "react";
 import {
   useContractWrite,
-  usePrepareContractWrite,
-  useWaitForTransaction,
+  useSimulateContract,
+  useWaitForTransactionReceipt,
 } from "wagmi";
 import { TxModal } from "../modals/tx/TxModal";
 
@@ -20,7 +20,7 @@ type ApproveBuyButtonProps = {
 };
 
 export const ApproveBuyButton = (props: ApproveBuyButtonProps) => {
-  const prepareIncreaseAllowanceTx = usePrepareContractWrite({
+  const prepareIncreaseAllowanceTx = useSimulateContract({
     address: convertAddressType(process.env.NEXT_PUBLIC_GHST_CONTRACT_ADDRESS),
     abi: ghstAbi,
     functionName: "approve",
@@ -34,7 +34,7 @@ export const ApproveBuyButton = (props: ApproveBuyButtonProps) => {
     prepareIncreaseAllowanceTx.config
   );
 
-  const waitForTx = useWaitForTransaction({
+  const waitForTx = useWaitForTransactionReceipt({
     hash: increaseAllowanceTx.data?.hash,
   });
 

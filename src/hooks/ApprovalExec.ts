@@ -3,7 +3,7 @@ import { wearableAbi } from "@/abis/wearables";
 import { TxContextType, txContextDefaultValue } from "@/types/types";
 import { TxStatus } from "@/helpers/enums";
 import { ApprovableAsset } from "@/types/types";
-import { prepareWriteContract, writeContract, waitForTransaction } from "@wagmi/core";
+import { simulateContract, writeContract, waitForTransactionReceipt } from "@wagmi/core";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { BaseError } from "viem";
 
@@ -21,7 +21,7 @@ export const useApprovalExec = (assetsCopy: ApprovableAsset[], setApproveTxStart
         for (let asset of assetsCopy.filter(asset => asset.__typename !== 'wearable' && !asset.approved))
         {
           console.log(`Prepare approval for gotchi ${asset.id}`)
-          const preparedTx = await prepareWriteContract({
+          const preparedTx = await simulateContract({
             address: process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS,
             abi: aavegotchiAbi,
             functionName: 'approve',
@@ -49,7 +49,7 @@ export const useApprovalExec = (assetsCopy: ApprovableAsset[], setApproveTxStart
 
           // We wait for Tx to end
           console.log(`Start wait for gotchi ${asset.id}`)
-          const data = await waitForTransaction({ hash })
+          const data = await waitForTransactionReceipt({ hash })
           console.log(`End wait for gotchi ${asset.id}`)
           if (data.status === 'success') {
             setTxContext({
@@ -77,7 +77,7 @@ export const useApprovalExec = (assetsCopy: ApprovableAsset[], setApproveTxStart
             status: TxStatus.WAITING
           })
           console.log(`Prepare tx for wearables`)
-          const preparedTx = await prepareWriteContract({
+          const preparedTx = await simulateContract({
             address: process.env.NEXT_PUBLIC_WEARABLE_CONTRACT_ADDRESS,
             abi: wearableAbi,
             functionName: 'setApprovalForAll',
@@ -96,7 +96,7 @@ export const useApprovalExec = (assetsCopy: ApprovableAsset[], setApproveTxStart
           })
           // We wait for Tx to end
           console.log(`Start Wait tx for wearables`)
-          const data = await waitForTransaction({ hash })
+          const data = await waitForTransactionReceipt({ hash })
           console.log(`End Wait tx for wearables`)
           if (data.status === 'success') {
             console.log('useApprovalExec success')
@@ -141,7 +141,7 @@ export const useApprovalExec = (assetsCopy: ApprovableAsset[], setApproveTxStart
       }
     }
     processTx()
-  }, [status, setStatus, prepareWriteContract, writeContract, waitForTransaction])
-  // }, [status, setStatus, cartCtx, txContext, prepareWriteContract, writeContract, waitForTransaction])
+  }, [status, setStatus, simulateContract, writeContract, waitForTransactionReceipt])
+  // }, [status, setStatus, cartCtx, txContext, simulateContract, writeContract, waitForTransactionReceipt])
   return { status, txContext, assets }
 }

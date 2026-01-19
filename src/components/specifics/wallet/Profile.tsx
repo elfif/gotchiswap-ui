@@ -1,8 +1,21 @@
 import { useAccount } from 'wagmi'
+import { useAppKit } from '@reown/appkit/react'
 import { Connected } from './Connected'
-import { Web3Button } from '@web3modal/react'
 
 export const Profile = () => {
   const { address, isConnected } = useAccount()
-  return ((isConnected && address) ? <Connected /> : <Web3Button />)
+  const { open } = useAppKit()
+
+  if (isConnected && address) {
+    return <Connected />
+  }
+
+  return (
+    <button
+      onClick={() => open()}
+      className="px-6 py-3 bg-white text-black rounded-lg hover:bg-gray-100 transition-colors"
+    >
+      Connect Wallet
+    </button>
+  )
 }
