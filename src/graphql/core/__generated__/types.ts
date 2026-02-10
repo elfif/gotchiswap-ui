@@ -25,19 +25,29 @@ export type Scalars = {
 export type Aavegotchi = {
   __typename?: 'Aavegotchi';
   activeListing?: Maybe<Scalars['BigInt']['output']>;
+  baseAggression: Scalars['Int']['output'];
+  baseBrain: Scalars['Int']['output'];
+  baseEnergy: Scalars['Int']['output'];
   baseRarityScore: Scalars['BigInt']['output'];
-  /** Block in which the Aavegotchi was claimed. Should coincide with createdAt */
+  baseSpookiness: Scalars['Int']['output'];
+  /** Block in which the Aavegotchi was claimed on Base. Should coincide with createdAt */
   claimedAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Block in which the Aavegotchi was claimed on Polygon (if migrated). Should coincide with createdAtPolygon */
+  claimedAtPolygon?: Maybe<Scalars['BigInt']['output']>;
   claimedTime?: Maybe<Scalars['BigInt']['output']>;
   collateral: Scalars['Bytes']['output'];
-  /** Block in which the Aavegotchi entity was created */
+  /** Block in which the Aavegotchi entity was created on Base */
   createdAt?: Maybe<Scalars['BigInt']['output']>;
+  /** Block in which the Aavegotchi was created on Polygon */
+  createdAtPolygon?: Maybe<Scalars['BigInt']['output']>;
   equippedDelegatedWearables?: Maybe<Array<Scalars['Int']['output']>>;
   equippedSetID?: Maybe<Scalars['BigInt']['output']>;
   equippedSetName?: Maybe<Scalars['String']['output']>;
   equippedWearables: Array<Scalars['Int']['output']>;
   escrow: Scalars['Bytes']['output'];
   experience: Scalars['BigInt']['output'];
+  eyeColor: Scalars['Int']['output'];
+  eyeShape: Scalars['Int']['output'];
   gotchiId: Scalars['BigInt']['output'];
   hauntId: Scalars['BigInt']['output'];
   historicalPrices?: Maybe<Array<Scalars['BigInt']['output']>>;
@@ -49,8 +59,12 @@ export type Aavegotchi = {
   listings: Array<Erc721Listing>;
   locked: Scalars['Boolean']['output'];
   minimumStake: Scalars['BigInt']['output'];
+  modifiedAggression: Scalars['Int']['output'];
+  modifiedBrain: Scalars['Int']['output'];
+  modifiedEnergy: Scalars['Int']['output'];
   modifiedNumericTraits: Array<Scalars['Int']['output']>;
   modifiedRarityScore: Scalars['BigInt']['output'];
+  modifiedSpookiness: Scalars['Int']['output'];
   name: Scalars['String']['output'];
   nameLowerCase: Scalars['String']['output'];
   numericTraits: Array<Scalars['Int']['output']>;
@@ -216,6 +230,7 @@ export enum AavegotchiOption_OrderBy {
   PortalActiveListing = 'portal__activeListing',
   PortalBoughtAt = 'portal__boughtAt',
   PortalClaimedAt = 'portal__claimedAt',
+  PortalClaimedAtPolygon = 'portal__claimedAtPolygon',
   PortalClaimedTime = 'portal__claimedTime',
   PortalGotchiId = 'portal__gotchiId',
   PortalHauntId = 'portal__hauntId',
@@ -238,6 +253,30 @@ export type Aavegotchi_Filter = {
   activeListing_not?: InputMaybe<Scalars['BigInt']['input']>;
   activeListing_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   and?: InputMaybe<Array<InputMaybe<Aavegotchi_Filter>>>;
+  baseAggression?: InputMaybe<Scalars['Int']['input']>;
+  baseAggression_gt?: InputMaybe<Scalars['Int']['input']>;
+  baseAggression_gte?: InputMaybe<Scalars['Int']['input']>;
+  baseAggression_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  baseAggression_lt?: InputMaybe<Scalars['Int']['input']>;
+  baseAggression_lte?: InputMaybe<Scalars['Int']['input']>;
+  baseAggression_not?: InputMaybe<Scalars['Int']['input']>;
+  baseAggression_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  baseBrain?: InputMaybe<Scalars['Int']['input']>;
+  baseBrain_gt?: InputMaybe<Scalars['Int']['input']>;
+  baseBrain_gte?: InputMaybe<Scalars['Int']['input']>;
+  baseBrain_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  baseBrain_lt?: InputMaybe<Scalars['Int']['input']>;
+  baseBrain_lte?: InputMaybe<Scalars['Int']['input']>;
+  baseBrain_not?: InputMaybe<Scalars['Int']['input']>;
+  baseBrain_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  baseEnergy?: InputMaybe<Scalars['Int']['input']>;
+  baseEnergy_gt?: InputMaybe<Scalars['Int']['input']>;
+  baseEnergy_gte?: InputMaybe<Scalars['Int']['input']>;
+  baseEnergy_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  baseEnergy_lt?: InputMaybe<Scalars['Int']['input']>;
+  baseEnergy_lte?: InputMaybe<Scalars['Int']['input']>;
+  baseEnergy_not?: InputMaybe<Scalars['Int']['input']>;
+  baseEnergy_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
   baseRarityScore?: InputMaybe<Scalars['BigInt']['input']>;
   baseRarityScore_gt?: InputMaybe<Scalars['BigInt']['input']>;
   baseRarityScore_gte?: InputMaybe<Scalars['BigInt']['input']>;
@@ -246,7 +285,23 @@ export type Aavegotchi_Filter = {
   baseRarityScore_lte?: InputMaybe<Scalars['BigInt']['input']>;
   baseRarityScore_not?: InputMaybe<Scalars['BigInt']['input']>;
   baseRarityScore_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  baseSpookiness?: InputMaybe<Scalars['Int']['input']>;
+  baseSpookiness_gt?: InputMaybe<Scalars['Int']['input']>;
+  baseSpookiness_gte?: InputMaybe<Scalars['Int']['input']>;
+  baseSpookiness_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  baseSpookiness_lt?: InputMaybe<Scalars['Int']['input']>;
+  baseSpookiness_lte?: InputMaybe<Scalars['Int']['input']>;
+  baseSpookiness_not?: InputMaybe<Scalars['Int']['input']>;
+  baseSpookiness_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
   claimedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  claimedAtPolygon_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_not?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   claimedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
   claimedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
   claimedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
@@ -273,6 +328,14 @@ export type Aavegotchi_Filter = {
   collateral_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
   collateral_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
   createdAt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  createdAtPolygon_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon_not?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAtPolygon_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   createdAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
   createdAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
   createdAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
@@ -338,6 +401,22 @@ export type Aavegotchi_Filter = {
   experience_lte?: InputMaybe<Scalars['BigInt']['input']>;
   experience_not?: InputMaybe<Scalars['BigInt']['input']>;
   experience_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  eyeColor?: InputMaybe<Scalars['Int']['input']>;
+  eyeColor_gt?: InputMaybe<Scalars['Int']['input']>;
+  eyeColor_gte?: InputMaybe<Scalars['Int']['input']>;
+  eyeColor_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  eyeColor_lt?: InputMaybe<Scalars['Int']['input']>;
+  eyeColor_lte?: InputMaybe<Scalars['Int']['input']>;
+  eyeColor_not?: InputMaybe<Scalars['Int']['input']>;
+  eyeColor_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  eyeShape?: InputMaybe<Scalars['Int']['input']>;
+  eyeShape_gt?: InputMaybe<Scalars['Int']['input']>;
+  eyeShape_gte?: InputMaybe<Scalars['Int']['input']>;
+  eyeShape_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  eyeShape_lt?: InputMaybe<Scalars['Int']['input']>;
+  eyeShape_lte?: InputMaybe<Scalars['Int']['input']>;
+  eyeShape_not?: InputMaybe<Scalars['Int']['input']>;
+  eyeShape_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
   gotchiId?: InputMaybe<Scalars['BigInt']['input']>;
   gotchiId_gt?: InputMaybe<Scalars['BigInt']['input']>;
   gotchiId_gte?: InputMaybe<Scalars['BigInt']['input']>;
@@ -413,6 +492,30 @@ export type Aavegotchi_Filter = {
   minimumStake_lte?: InputMaybe<Scalars['BigInt']['input']>;
   minimumStake_not?: InputMaybe<Scalars['BigInt']['input']>;
   minimumStake_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  modifiedAggression?: InputMaybe<Scalars['Int']['input']>;
+  modifiedAggression_gt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedAggression_gte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedAggression_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  modifiedAggression_lt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedAggression_lte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedAggression_not?: InputMaybe<Scalars['Int']['input']>;
+  modifiedAggression_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  modifiedBrain?: InputMaybe<Scalars['Int']['input']>;
+  modifiedBrain_gt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedBrain_gte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedBrain_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  modifiedBrain_lt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedBrain_lte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedBrain_not?: InputMaybe<Scalars['Int']['input']>;
+  modifiedBrain_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  modifiedEnergy?: InputMaybe<Scalars['Int']['input']>;
+  modifiedEnergy_gt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedEnergy_gte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedEnergy_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  modifiedEnergy_lt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedEnergy_lte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedEnergy_not?: InputMaybe<Scalars['Int']['input']>;
+  modifiedEnergy_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
   modifiedNumericTraits?: InputMaybe<Array<Scalars['Int']['input']>>;
   modifiedNumericTraits_contains?: InputMaybe<Array<Scalars['Int']['input']>>;
   modifiedNumericTraits_contains_nocase?: InputMaybe<Array<Scalars['Int']['input']>>;
@@ -427,6 +530,14 @@ export type Aavegotchi_Filter = {
   modifiedRarityScore_lte?: InputMaybe<Scalars['BigInt']['input']>;
   modifiedRarityScore_not?: InputMaybe<Scalars['BigInt']['input']>;
   modifiedRarityScore_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  modifiedSpookiness?: InputMaybe<Scalars['Int']['input']>;
+  modifiedSpookiness_gt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedSpookiness_gte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedSpookiness_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  modifiedSpookiness_lt?: InputMaybe<Scalars['Int']['input']>;
+  modifiedSpookiness_lte?: InputMaybe<Scalars['Int']['input']>;
+  modifiedSpookiness_not?: InputMaybe<Scalars['Int']['input']>;
+  modifiedSpookiness_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
   name?: InputMaybe<Scalars['String']['input']>;
   nameLowerCase?: InputMaybe<Scalars['String']['input']>;
   nameLowerCase_contains?: InputMaybe<Scalars['String']['input']>;
@@ -591,17 +702,25 @@ export type Aavegotchi_Filter = {
 
 export enum Aavegotchi_OrderBy {
   ActiveListing = 'activeListing',
+  BaseAggression = 'baseAggression',
+  BaseBrain = 'baseBrain',
+  BaseEnergy = 'baseEnergy',
   BaseRarityScore = 'baseRarityScore',
+  BaseSpookiness = 'baseSpookiness',
   ClaimedAt = 'claimedAt',
+  ClaimedAtPolygon = 'claimedAtPolygon',
   ClaimedTime = 'claimedTime',
   Collateral = 'collateral',
   CreatedAt = 'createdAt',
+  CreatedAtPolygon = 'createdAtPolygon',
   EquippedDelegatedWearables = 'equippedDelegatedWearables',
   EquippedSetId = 'equippedSetID',
   EquippedSetName = 'equippedSetName',
   EquippedWearables = 'equippedWearables',
   Escrow = 'escrow',
   Experience = 'experience',
+  EyeColor = 'eyeColor',
+  EyeShape = 'eyeShape',
   GotchiId = 'gotchiId',
   HauntId = 'hauntId',
   HistoricalPrices = 'historicalPrices',
@@ -613,8 +732,12 @@ export enum Aavegotchi_OrderBy {
   Listings = 'listings',
   Locked = 'locked',
   MinimumStake = 'minimumStake',
+  ModifiedAggression = 'modifiedAggression',
+  ModifiedBrain = 'modifiedBrain',
+  ModifiedEnergy = 'modifiedEnergy',
   ModifiedNumericTraits = 'modifiedNumericTraits',
   ModifiedRarityScore = 'modifiedRarityScore',
+  ModifiedSpookiness = 'modifiedSpookiness',
   Name = 'name',
   NameLowerCase = 'nameLowerCase',
   NumericTraits = 'numericTraits',
@@ -640,6 +763,7 @@ export enum Aavegotchi_OrderBy {
   PortalActiveListing = 'portal__activeListing',
   PortalBoughtAt = 'portal__boughtAt',
   PortalClaimedAt = 'portal__claimedAt',
+  PortalClaimedAtPolygon = 'portal__claimedAtPolygon',
   PortalClaimedTime = 'portal__claimedTime',
   PortalGotchiId = 'portal__gotchiId',
   PortalHauntId = 'portal__hauntId',
@@ -775,6 +899,7 @@ export type Erc721BuyOrder = {
   erc721TokenAddress: Scalars['Bytes']['output'];
   erc721TokenId: Scalars['BigInt']['output'];
   executedAt?: Maybe<Scalars['BigInt']['output']>;
+  executedAtBlock?: Maybe<Scalars['BigInt']['output']>;
   id: Scalars['ID']['output'];
   priceInWei: Scalars['BigInt']['output'];
   seller?: Maybe<Scalars['Bytes']['output']>;
@@ -850,6 +975,14 @@ export type Erc721BuyOrder_Filter = {
   erc721TokenId_not?: InputMaybe<Scalars['BigInt']['input']>;
   erc721TokenId_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   executedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedAtBlock_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock_not?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAtBlock_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   executedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
   executedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
   executedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
@@ -906,6 +1039,7 @@ export enum Erc721BuyOrder_OrderBy {
   Erc721TokenAddress = 'erc721TokenAddress',
   Erc721TokenId = 'erc721TokenId',
   ExecutedAt = 'executedAt',
+  ExecutedAtBlock = 'executedAtBlock',
   Id = 'id',
   PriceInWei = 'priceInWei',
   Seller = 'seller',
@@ -924,6 +1058,7 @@ export type Erc721Listing = {
   cancelled?: Maybe<Scalars['Boolean']['output']>;
   category: Scalars['BigInt']['output'];
   claimedAt?: Maybe<Scalars['BigInt']['output']>;
+  claimedAtPolygon?: Maybe<Scalars['BigInt']['output']>;
   collateral?: Maybe<Scalars['Bytes']['output']>;
   coordinateX?: Maybe<Scalars['BigInt']['output']>;
   coordinateY?: Maybe<Scalars['BigInt']['output']>;
@@ -955,11 +1090,15 @@ export type Erc721Listing = {
   portal?: Maybe<Portal>;
   priceInWei: Scalars['BigInt']['output'];
   priceUpdatedAt?: Maybe<Scalars['BigInt']['output']>;
+  purchasedWithSwap?: Maybe<Scalars['Boolean']['output']>;
   recipient?: Maybe<Scalars['Bytes']['output']>;
   seller: Scalars['Bytes']['output'];
   size?: Maybe<Scalars['BigInt']['output']>;
   soldBefore?: Maybe<Scalars['Boolean']['output']>;
   spkTrait?: Maybe<Scalars['BigInt']['output']>;
+  swapAmountIn?: Maybe<Scalars['BigInt']['output']>;
+  swapGhstReceived?: Maybe<Scalars['BigInt']['output']>;
+  swapTokenIn?: Maybe<Scalars['Bytes']['output']>;
   timeCreated: Scalars['BigInt']['output'];
   timePurchased?: Maybe<Scalars['BigInt']['output']>;
   tokenId: Scalars['BigInt']['output'];
@@ -1041,6 +1180,14 @@ export type Erc721Listing_Filter = {
   category_not?: InputMaybe<Scalars['BigInt']['input']>;
   category_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   claimedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  claimedAtPolygon_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_not?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   claimedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
   claimedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
   claimedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
@@ -1436,6 +1583,10 @@ export type Erc721Listing_Filter = {
   priceUpdatedAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
   priceUpdatedAt_not?: InputMaybe<Scalars['BigInt']['input']>;
   priceUpdatedAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  purchasedWithSwap?: InputMaybe<Scalars['Boolean']['input']>;
+  purchasedWithSwap_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  purchasedWithSwap_not?: InputMaybe<Scalars['Boolean']['input']>;
+  purchasedWithSwap_not_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
   recipient?: InputMaybe<Scalars['Bytes']['input']>;
   recipient_contains?: InputMaybe<Scalars['Bytes']['input']>;
   recipient_gt?: InputMaybe<Scalars['Bytes']['input']>;
@@ -1476,6 +1627,32 @@ export type Erc721Listing_Filter = {
   spkTrait_lte?: InputMaybe<Scalars['BigInt']['input']>;
   spkTrait_not?: InputMaybe<Scalars['BigInt']['input']>;
   spkTrait_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapAmountIn?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapAmountIn_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_not?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapGhstReceived?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapGhstReceived_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_not?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapTokenIn?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  swapTokenIn_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_not?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
   timeCreated?: InputMaybe<Scalars['BigInt']['input']>;
   timeCreated_gt?: InputMaybe<Scalars['BigInt']['input']>;
   timeCreated_gte?: InputMaybe<Scalars['BigInt']['input']>;
@@ -1534,6 +1711,7 @@ export enum Erc721Listing_OrderBy {
   Cancelled = 'cancelled',
   Category = 'category',
   ClaimedAt = 'claimedAt',
+  ClaimedAtPolygon = 'claimedAtPolygon',
   Collateral = 'collateral',
   CoordinateX = 'coordinateX',
   CoordinateY = 'coordinateY',
@@ -1570,15 +1748,23 @@ export enum Erc721Listing_OrderBy {
   FudBoost = 'fudBoost',
   Gotchi = 'gotchi',
   GotchiActiveListing = 'gotchi__activeListing',
+  GotchiBaseAggression = 'gotchi__baseAggression',
+  GotchiBaseBrain = 'gotchi__baseBrain',
+  GotchiBaseEnergy = 'gotchi__baseEnergy',
   GotchiBaseRarityScore = 'gotchi__baseRarityScore',
+  GotchiBaseSpookiness = 'gotchi__baseSpookiness',
   GotchiClaimedAt = 'gotchi__claimedAt',
+  GotchiClaimedAtPolygon = 'gotchi__claimedAtPolygon',
   GotchiClaimedTime = 'gotchi__claimedTime',
   GotchiCollateral = 'gotchi__collateral',
   GotchiCreatedAt = 'gotchi__createdAt',
+  GotchiCreatedAtPolygon = 'gotchi__createdAtPolygon',
   GotchiEquippedSetId = 'gotchi__equippedSetID',
   GotchiEquippedSetName = 'gotchi__equippedSetName',
   GotchiEscrow = 'gotchi__escrow',
   GotchiExperience = 'gotchi__experience',
+  GotchiEyeColor = 'gotchi__eyeColor',
+  GotchiEyeShape = 'gotchi__eyeShape',
   GotchiGotchiId = 'gotchi__gotchiId',
   GotchiHauntId = 'gotchi__hauntId',
   GotchiId = 'gotchi__id',
@@ -1588,7 +1774,11 @@ export enum Erc721Listing_OrderBy {
   GotchiLevel = 'gotchi__level',
   GotchiLocked = 'gotchi__locked',
   GotchiMinimumStake = 'gotchi__minimumStake',
+  GotchiModifiedAggression = 'gotchi__modifiedAggression',
+  GotchiModifiedBrain = 'gotchi__modifiedBrain',
+  GotchiModifiedEnergy = 'gotchi__modifiedEnergy',
   GotchiModifiedRarityScore = 'gotchi__modifiedRarityScore',
+  GotchiModifiedSpookiness = 'gotchi__modifiedSpookiness',
   GotchiName = 'gotchi__name',
   GotchiNameLowerCase = 'gotchi__nameLowerCase',
   GotchiPossibleSets = 'gotchi__possibleSets',
@@ -1627,6 +1817,7 @@ export enum Erc721Listing_OrderBy {
   PortalActiveListing = 'portal__activeListing',
   PortalBoughtAt = 'portal__boughtAt',
   PortalClaimedAt = 'portal__claimedAt',
+  PortalClaimedAtPolygon = 'portal__claimedAtPolygon',
   PortalClaimedTime = 'portal__claimedTime',
   PortalGotchiId = 'portal__gotchiId',
   PortalHauntId = 'portal__hauntId',
@@ -1636,11 +1827,15 @@ export enum Erc721Listing_OrderBy {
   PortalTimesTraded = 'portal__timesTraded',
   PriceInWei = 'priceInWei',
   PriceUpdatedAt = 'priceUpdatedAt',
+  PurchasedWithSwap = 'purchasedWithSwap',
   Recipient = 'recipient',
   Seller = 'seller',
   Size = 'size',
   SoldBefore = 'soldBefore',
   SpkTrait = 'spkTrait',
+  SwapAmountIn = 'swapAmountIn',
+  SwapGhstReceived = 'swapGhstReceived',
+  SwapTokenIn = 'swapTokenIn',
   TimeCreated = 'timeCreated',
   TimePurchased = 'timePurchased',
   TokenId = 'tokenId',
@@ -1649,6 +1844,332 @@ export enum Erc721Listing_OrderBy {
   WhitelistMaxBorrowLimit = 'whitelist__maxBorrowLimit',
   WhitelistName = 'whitelist__name',
   WhitelistOwnerAddress = 'whitelist__ownerAddress'
+}
+
+export type Erc1155BuyOrder = {
+  __typename?: 'ERC1155BuyOrder';
+  buyer: Scalars['Bytes']['output'];
+  canceled?: Maybe<Scalars['Boolean']['output']>;
+  canceledAt?: Maybe<Scalars['BigInt']['output']>;
+  category: Scalars['BigInt']['output'];
+  completedAt?: Maybe<Scalars['BigInt']['output']>;
+  createdAt: Scalars['BigInt']['output'];
+  duration: Scalars['BigInt']['output'];
+  erc1155TokenAddress: Scalars['Bytes']['output'];
+  erc1155TokenId: Scalars['BigInt']['output'];
+  executedQuantity: Scalars['BigInt']['output'];
+  executions: Array<Erc1155BuyOrderExecution>;
+  id: Scalars['ID']['output'];
+  lastExecutedAt?: Maybe<Scalars['BigInt']['output']>;
+  priceInWei: Scalars['BigInt']['output'];
+  quantity: Scalars['BigInt']['output'];
+  seller?: Maybe<Scalars['Bytes']['output']>;
+};
+
+
+export type Erc1155BuyOrderExecutionsArgs = {
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Erc1155BuyOrderExecution_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<Erc1155BuyOrderExecution_Filter>;
+};
+
+export type Erc1155BuyOrderExecution = {
+  __typename?: 'ERC1155BuyOrderExecution';
+  buyOrder: Erc1155BuyOrder;
+  buyer: Scalars['Bytes']['output'];
+  category: Scalars['BigInt']['output'];
+  erc1155TokenAddress: Scalars['Bytes']['output'];
+  erc1155TokenId: Scalars['BigInt']['output'];
+  executedAt?: Maybe<Scalars['BigInt']['output']>;
+  executedQuantity: Scalars['BigInt']['output'];
+  id: Scalars['ID']['output'];
+  priceInWei: Scalars['BigInt']['output'];
+  seller?: Maybe<Scalars['Bytes']['output']>;
+};
+
+export type Erc1155BuyOrderExecution_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<Erc1155BuyOrderExecution_Filter>>>;
+  buyOrder?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_?: InputMaybe<Erc1155BuyOrder_Filter>;
+  buyOrder_contains?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_ends_with?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_gt?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_gte?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  buyOrder_lt?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_lte?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not_contains?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  buyOrder_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_starts_with?: InputMaybe<Scalars['String']['input']>;
+  buyOrder_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  buyer?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  buyer_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_not?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  category?: InputMaybe<Scalars['BigInt']['input']>;
+  category_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  category_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  category_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  category_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  category_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  category_not?: InputMaybe<Scalars['BigInt']['input']>;
+  category_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  erc1155TokenAddress?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  erc1155TokenAddress_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_not?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  erc1155TokenId?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  erc1155TokenId_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_not?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  executedAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedQuantity?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedQuantity_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_not?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_gt?: InputMaybe<Scalars['ID']['input']>;
+  id_gte?: InputMaybe<Scalars['ID']['input']>;
+  id_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_lt?: InputMaybe<Scalars['ID']['input']>;
+  id_lte?: InputMaybe<Scalars['ID']['input']>;
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  or?: InputMaybe<Array<InputMaybe<Erc1155BuyOrderExecution_Filter>>>;
+  priceInWei?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  priceInWei_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_not?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  seller?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  seller_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_not?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+};
+
+export enum Erc1155BuyOrderExecution_OrderBy {
+  BuyOrder = 'buyOrder',
+  BuyOrderBuyer = 'buyOrder__buyer',
+  BuyOrderCanceled = 'buyOrder__canceled',
+  BuyOrderCanceledAt = 'buyOrder__canceledAt',
+  BuyOrderCategory = 'buyOrder__category',
+  BuyOrderCompletedAt = 'buyOrder__completedAt',
+  BuyOrderCreatedAt = 'buyOrder__createdAt',
+  BuyOrderDuration = 'buyOrder__duration',
+  BuyOrderErc1155TokenAddress = 'buyOrder__erc1155TokenAddress',
+  BuyOrderErc1155TokenId = 'buyOrder__erc1155TokenId',
+  BuyOrderExecutedQuantity = 'buyOrder__executedQuantity',
+  BuyOrderId = 'buyOrder__id',
+  BuyOrderLastExecutedAt = 'buyOrder__lastExecutedAt',
+  BuyOrderPriceInWei = 'buyOrder__priceInWei',
+  BuyOrderQuantity = 'buyOrder__quantity',
+  BuyOrderSeller = 'buyOrder__seller',
+  Buyer = 'buyer',
+  Category = 'category',
+  Erc1155TokenAddress = 'erc1155TokenAddress',
+  Erc1155TokenId = 'erc1155TokenId',
+  ExecutedAt = 'executedAt',
+  ExecutedQuantity = 'executedQuantity',
+  Id = 'id',
+  PriceInWei = 'priceInWei',
+  Seller = 'seller'
+}
+
+export type Erc1155BuyOrder_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<Erc1155BuyOrder_Filter>>>;
+  buyer?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  buyer_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_not?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  buyer_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  canceled?: InputMaybe<Scalars['Boolean']['input']>;
+  canceledAt?: InputMaybe<Scalars['BigInt']['input']>;
+  canceledAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  canceledAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  canceledAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  canceledAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  canceledAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  canceledAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  canceledAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  canceled_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  canceled_not?: InputMaybe<Scalars['Boolean']['input']>;
+  canceled_not_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  category?: InputMaybe<Scalars['BigInt']['input']>;
+  category_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  category_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  category_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  category_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  category_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  category_not?: InputMaybe<Scalars['BigInt']['input']>;
+  category_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  completedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  completedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  completedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  completedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  completedAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  completedAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  completedAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  completedAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  createdAt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  createdAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  duration?: InputMaybe<Scalars['BigInt']['input']>;
+  duration_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  duration_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  duration_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  duration_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  duration_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  duration_not?: InputMaybe<Scalars['BigInt']['input']>;
+  duration_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  erc1155TokenAddress?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  erc1155TokenAddress_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_not?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  erc1155TokenAddress_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  erc1155TokenId?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  erc1155TokenId_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_not?: InputMaybe<Scalars['BigInt']['input']>;
+  erc1155TokenId_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedQuantity?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executedQuantity_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_not?: InputMaybe<Scalars['BigInt']['input']>;
+  executedQuantity_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  executions_?: InputMaybe<Erc1155BuyOrderExecution_Filter>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_gt?: InputMaybe<Scalars['ID']['input']>;
+  id_gte?: InputMaybe<Scalars['ID']['input']>;
+  id_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_lt?: InputMaybe<Scalars['ID']['input']>;
+  id_lte?: InputMaybe<Scalars['ID']['input']>;
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  lastExecutedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastExecutedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastExecutedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastExecutedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  lastExecutedAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastExecutedAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastExecutedAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  lastExecutedAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  or?: InputMaybe<Array<InputMaybe<Erc1155BuyOrder_Filter>>>;
+  priceInWei?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  priceInWei_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_not?: InputMaybe<Scalars['BigInt']['input']>;
+  priceInWei_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  quantity?: InputMaybe<Scalars['BigInt']['input']>;
+  quantity_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  quantity_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  quantity_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  quantity_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  quantity_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  quantity_not?: InputMaybe<Scalars['BigInt']['input']>;
+  quantity_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  seller?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  seller_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_not?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  seller_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+};
+
+export enum Erc1155BuyOrder_OrderBy {
+  Buyer = 'buyer',
+  Canceled = 'canceled',
+  CanceledAt = 'canceledAt',
+  Category = 'category',
+  CompletedAt = 'completedAt',
+  CreatedAt = 'createdAt',
+  Duration = 'duration',
+  Erc1155TokenAddress = 'erc1155TokenAddress',
+  Erc1155TokenId = 'erc1155TokenId',
+  ExecutedQuantity = 'executedQuantity',
+  Executions = 'executions',
+  Id = 'id',
+  LastExecutedAt = 'lastExecutedAt',
+  PriceInWei = 'priceInWei',
+  Quantity = 'quantity',
+  Seller = 'seller'
 }
 
 export type Erc1155Listing = {
@@ -1897,10 +2418,14 @@ export type Erc1155Purchase = {
   id: Scalars['ID']['output'];
   listingID: Scalars['BigInt']['output'];
   priceInWei: Scalars['BigInt']['output'];
+  purchasedWithSwap?: Maybe<Scalars['Boolean']['output']>;
   quantity: Scalars['BigInt']['output'];
   rarityLevel?: Maybe<Scalars['BigInt']['output']>;
   recipient?: Maybe<Scalars['Bytes']['output']>;
   seller: Scalars['Bytes']['output'];
+  swapAmountIn?: Maybe<Scalars['BigInt']['output']>;
+  swapGhstReceived?: Maybe<Scalars['BigInt']['output']>;
+  swapTokenIn?: Maybe<Scalars['Bytes']['output']>;
   timeLastPurchased: Scalars['BigInt']['output'];
 };
 
@@ -1969,6 +2494,10 @@ export type Erc1155Purchase_Filter = {
   priceInWei_lte?: InputMaybe<Scalars['BigInt']['input']>;
   priceInWei_not?: InputMaybe<Scalars['BigInt']['input']>;
   priceInWei_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  purchasedWithSwap?: InputMaybe<Scalars['Boolean']['input']>;
+  purchasedWithSwap_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  purchasedWithSwap_not?: InputMaybe<Scalars['Boolean']['input']>;
+  purchasedWithSwap_not_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
   quantity?: InputMaybe<Scalars['BigInt']['input']>;
   quantity_gt?: InputMaybe<Scalars['BigInt']['input']>;
   quantity_gte?: InputMaybe<Scalars['BigInt']['input']>;
@@ -2005,6 +2534,32 @@ export type Erc1155Purchase_Filter = {
   seller_not?: InputMaybe<Scalars['Bytes']['input']>;
   seller_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
   seller_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  swapAmountIn?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapAmountIn_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_not?: InputMaybe<Scalars['BigInt']['input']>;
+  swapAmountIn_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapGhstReceived?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapGhstReceived_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_not?: InputMaybe<Scalars['BigInt']['input']>;
+  swapGhstReceived_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  swapTokenIn?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  swapTokenIn_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_not?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  swapTokenIn_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
   timeLastPurchased?: InputMaybe<Scalars['BigInt']['input']>;
   timeLastPurchased_gt?: InputMaybe<Scalars['BigInt']['input']>;
   timeLastPurchased_gte?: InputMaybe<Scalars['BigInt']['input']>;
@@ -2023,11 +2578,222 @@ export enum Erc1155Purchase_OrderBy {
   Id = 'id',
   ListingId = 'listingID',
   PriceInWei = 'priceInWei',
+  PurchasedWithSwap = 'purchasedWithSwap',
   Quantity = 'quantity',
   RarityLevel = 'rarityLevel',
   Recipient = 'recipient',
   Seller = 'seller',
+  SwapAmountIn = 'swapAmountIn',
+  SwapGhstReceived = 'swapGhstReceived',
+  SwapTokenIn = 'swapTokenIn',
   TimeLastPurchased = 'timeLastPurchased'
+}
+
+export type EquippedWearableOwner = {
+  __typename?: 'EquippedWearableOwner';
+  /** depositId for delegated wearables, 0 for normal wearables */
+  depositId: Scalars['BigInt']['output'];
+  equippedAt: Scalars['BigInt']['output'];
+  gotchi: Aavegotchi;
+  gotchiId: Scalars['BigInt']['output'];
+  id: Scalars['ID']['output'];
+  /** true if the wearable is currently equipped */
+  isCurrentlyEquipped: Scalars['Boolean']['output'];
+  /** true if this is a delegated wearable */
+  isDelegated: Scalars['Boolean']['output'];
+  owner: User;
+  ownerAddress: Scalars['Bytes']['output'];
+  slotPosition: Scalars['Int']['output'];
+  unequippedAt?: Maybe<Scalars['BigInt']['output']>;
+  wearableId: Scalars['Int']['output'];
+};
+
+export type EquippedWearableOwner_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<EquippedWearableOwner_Filter>>>;
+  depositId?: InputMaybe<Scalars['BigInt']['input']>;
+  depositId_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  depositId_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  depositId_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  depositId_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  depositId_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  depositId_not?: InputMaybe<Scalars['BigInt']['input']>;
+  depositId_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  equippedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  equippedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  equippedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  equippedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  equippedAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  equippedAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  equippedAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  equippedAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  gotchi?: InputMaybe<Scalars['String']['input']>;
+  gotchiId?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiId_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiId_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiId_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  gotchiId_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiId_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiId_not?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiId_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  gotchi_?: InputMaybe<Aavegotchi_Filter>;
+  gotchi_contains?: InputMaybe<Scalars['String']['input']>;
+  gotchi_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_ends_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_gt?: InputMaybe<Scalars['String']['input']>;
+  gotchi_gte?: InputMaybe<Scalars['String']['input']>;
+  gotchi_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  gotchi_lt?: InputMaybe<Scalars['String']['input']>;
+  gotchi_lte?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_contains?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  gotchi_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_starts_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_gt?: InputMaybe<Scalars['ID']['input']>;
+  id_gte?: InputMaybe<Scalars['ID']['input']>;
+  id_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_lt?: InputMaybe<Scalars['ID']['input']>;
+  id_lte?: InputMaybe<Scalars['ID']['input']>;
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  isCurrentlyEquipped?: InputMaybe<Scalars['Boolean']['input']>;
+  isCurrentlyEquipped_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  isCurrentlyEquipped_not?: InputMaybe<Scalars['Boolean']['input']>;
+  isCurrentlyEquipped_not_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  isDelegated?: InputMaybe<Scalars['Boolean']['input']>;
+  isDelegated_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  isDelegated_not?: InputMaybe<Scalars['Boolean']['input']>;
+  isDelegated_not_in?: InputMaybe<Array<Scalars['Boolean']['input']>>;
+  or?: InputMaybe<Array<InputMaybe<EquippedWearableOwner_Filter>>>;
+  owner?: InputMaybe<Scalars['String']['input']>;
+  ownerAddress?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  ownerAddress_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_not?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  owner_?: InputMaybe<User_Filter>;
+  owner_contains?: InputMaybe<Scalars['String']['input']>;
+  owner_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_ends_with?: InputMaybe<Scalars['String']['input']>;
+  owner_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_gt?: InputMaybe<Scalars['String']['input']>;
+  owner_gte?: InputMaybe<Scalars['String']['input']>;
+  owner_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  owner_lt?: InputMaybe<Scalars['String']['input']>;
+  owner_lte?: InputMaybe<Scalars['String']['input']>;
+  owner_not?: InputMaybe<Scalars['String']['input']>;
+  owner_not_contains?: InputMaybe<Scalars['String']['input']>;
+  owner_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  owner_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  owner_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  owner_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_starts_with?: InputMaybe<Scalars['String']['input']>;
+  owner_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  slotPosition?: InputMaybe<Scalars['Int']['input']>;
+  slotPosition_gt?: InputMaybe<Scalars['Int']['input']>;
+  slotPosition_gte?: InputMaybe<Scalars['Int']['input']>;
+  slotPosition_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  slotPosition_lt?: InputMaybe<Scalars['Int']['input']>;
+  slotPosition_lte?: InputMaybe<Scalars['Int']['input']>;
+  slotPosition_not?: InputMaybe<Scalars['Int']['input']>;
+  slotPosition_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  unequippedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  unequippedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  unequippedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  unequippedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  unequippedAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  unequippedAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  unequippedAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  unequippedAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  wearableId?: InputMaybe<Scalars['Int']['input']>;
+  wearableId_gt?: InputMaybe<Scalars['Int']['input']>;
+  wearableId_gte?: InputMaybe<Scalars['Int']['input']>;
+  wearableId_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearableId_lt?: InputMaybe<Scalars['Int']['input']>;
+  wearableId_lte?: InputMaybe<Scalars['Int']['input']>;
+  wearableId_not?: InputMaybe<Scalars['Int']['input']>;
+  wearableId_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+export enum EquippedWearableOwner_OrderBy {
+  DepositId = 'depositId',
+  EquippedAt = 'equippedAt',
+  Gotchi = 'gotchi',
+  GotchiId = 'gotchiId',
+  GotchiActiveListing = 'gotchi__activeListing',
+  GotchiBaseAggression = 'gotchi__baseAggression',
+  GotchiBaseBrain = 'gotchi__baseBrain',
+  GotchiBaseEnergy = 'gotchi__baseEnergy',
+  GotchiBaseRarityScore = 'gotchi__baseRarityScore',
+  GotchiBaseSpookiness = 'gotchi__baseSpookiness',
+  GotchiClaimedAt = 'gotchi__claimedAt',
+  GotchiClaimedAtPolygon = 'gotchi__claimedAtPolygon',
+  GotchiClaimedTime = 'gotchi__claimedTime',
+  GotchiCollateral = 'gotchi__collateral',
+  GotchiCreatedAt = 'gotchi__createdAt',
+  GotchiCreatedAtPolygon = 'gotchi__createdAtPolygon',
+  GotchiEquippedSetId = 'gotchi__equippedSetID',
+  GotchiEquippedSetName = 'gotchi__equippedSetName',
+  GotchiEscrow = 'gotchi__escrow',
+  GotchiExperience = 'gotchi__experience',
+  GotchiEyeColor = 'gotchi__eyeColor',
+  GotchiEyeShape = 'gotchi__eyeShape',
+  GotchiGotchiId = 'gotchi__gotchiId',
+  GotchiHauntId = 'gotchi__hauntId',
+  GotchiId = 'gotchi__id',
+  GotchiKinship = 'gotchi__kinship',
+  GotchiLastInteracted = 'gotchi__lastInteracted',
+  GotchiLending = 'gotchi__lending',
+  GotchiLevel = 'gotchi__level',
+  GotchiLocked = 'gotchi__locked',
+  GotchiMinimumStake = 'gotchi__minimumStake',
+  GotchiModifiedAggression = 'gotchi__modifiedAggression',
+  GotchiModifiedBrain = 'gotchi__modifiedBrain',
+  GotchiModifiedEnergy = 'gotchi__modifiedEnergy',
+  GotchiModifiedRarityScore = 'gotchi__modifiedRarityScore',
+  GotchiModifiedSpookiness = 'gotchi__modifiedSpookiness',
+  GotchiName = 'gotchi__name',
+  GotchiNameLowerCase = 'gotchi__nameLowerCase',
+  GotchiPossibleSets = 'gotchi__possibleSets',
+  GotchiRandomNumber = 'gotchi__randomNumber',
+  GotchiStakedAmount = 'gotchi__stakedAmount',
+  GotchiStatus = 'gotchi__status',
+  GotchiTimesTraded = 'gotchi__timesTraded',
+  GotchiToNextLevel = 'gotchi__toNextLevel',
+  GotchiUsedSkillPoints = 'gotchi__usedSkillPoints',
+  GotchiWithSetsRarityScore = 'gotchi__withSetsRarityScore',
+  Id = 'id',
+  IsCurrentlyEquipped = 'isCurrentlyEquipped',
+  IsDelegated = 'isDelegated',
+  Owner = 'owner',
+  OwnerAddress = 'ownerAddress',
+  OwnerAmountFakeGotchis = 'owner__amountFakeGotchis',
+  OwnerCurrentUniqueFakeGotchisOwned = 'owner__currentUniqueFakeGotchisOwned',
+  OwnerCurrentUniqueFakeGotchisOwnedArray = 'owner__currentUniqueFakeGotchisOwnedArray',
+  OwnerFakeGotchis = 'owner__fakeGotchis',
+  OwnerId = 'owner__id',
+  OwnerTotalFakeGotchisOwnedArray = 'owner__totalFakeGotchisOwnedArray',
+  OwnerTotalUniqueFakeGotchisOwned = 'owner__totalUniqueFakeGotchisOwned',
+  OwnerTotalUniqueFakeGotchisOwnedArray = 'owner__totalUniqueFakeGotchisOwnedArray',
+  SlotPosition = 'slotPosition',
+  UnequippedAt = 'unequippedAt',
+  WearableId = 'wearableId'
 }
 
 export type FakeGotchiCardBalance = {
@@ -3212,17 +3978,26 @@ export enum GotchiLending_OrderBy {
   Completed = 'completed',
   Gotchi = 'gotchi',
   GotchiBrs = 'gotchiBRS',
+  GotchiKinship = 'gotchiKinship',
   GotchiTokenId = 'gotchiTokenId',
   GotchiActiveListing = 'gotchi__activeListing',
+  GotchiBaseAggression = 'gotchi__baseAggression',
+  GotchiBaseBrain = 'gotchi__baseBrain',
+  GotchiBaseEnergy = 'gotchi__baseEnergy',
   GotchiBaseRarityScore = 'gotchi__baseRarityScore',
+  GotchiBaseSpookiness = 'gotchi__baseSpookiness',
   GotchiClaimedAt = 'gotchi__claimedAt',
+  GotchiClaimedAtPolygon = 'gotchi__claimedAtPolygon',
   GotchiClaimedTime = 'gotchi__claimedTime',
   GotchiCollateral = 'gotchi__collateral',
   GotchiCreatedAt = 'gotchi__createdAt',
+  GotchiCreatedAtPolygon = 'gotchi__createdAtPolygon',
   GotchiEquippedSetId = 'gotchi__equippedSetID',
   GotchiEquippedSetName = 'gotchi__equippedSetName',
   GotchiEscrow = 'gotchi__escrow',
   GotchiExperience = 'gotchi__experience',
+  GotchiEyeColor = 'gotchi__eyeColor',
+  GotchiEyeShape = 'gotchi__eyeShape',
   GotchiGotchiId = 'gotchi__gotchiId',
   GotchiHauntId = 'gotchi__hauntId',
   GotchiId = 'gotchi__id',
@@ -3232,7 +4007,11 @@ export enum GotchiLending_OrderBy {
   GotchiLevel = 'gotchi__level',
   GotchiLocked = 'gotchi__locked',
   GotchiMinimumStake = 'gotchi__minimumStake',
+  GotchiModifiedAggression = 'gotchi__modifiedAggression',
+  GotchiModifiedBrain = 'gotchi__modifiedBrain',
+  GotchiModifiedEnergy = 'gotchi__modifiedEnergy',
   GotchiModifiedRarityScore = 'gotchi__modifiedRarityScore',
+  GotchiModifiedSpookiness = 'gotchi__modifiedSpookiness',
   GotchiName = 'gotchi__name',
   GotchiNameLowerCase = 'gotchi__nameLowerCase',
   GotchiPossibleSets = 'gotchi__possibleSets',
@@ -3259,6 +4038,7 @@ export enum GotchiLending_OrderBy {
   TokensToShare = 'tokensToShare',
   UpfrontCost = 'upfrontCost',
   Whitelist = 'whitelist',
+  WhitelistId = 'whitelistId',
   WhitelistMembers = 'whitelistMembers',
   WhitelistId = 'whitelist__id',
   WhitelistMaxBorrowLimit = 'whitelist__maxBorrowLimit',
@@ -3281,12 +4061,117 @@ export type ItemType = {
   maxQuantity: Scalars['BigInt']['output'];
   minLevel?: Maybe<Scalars['Int']['output']>;
   name: Scalars['String']['output'];
+  owners: Array<ItemTypeOwnership>;
   rarityScoreModifier: Scalars['Int']['output'];
   slotPositions?: Maybe<Array<Scalars['Boolean']['output']>>;
   svgId: Scalars['BigInt']['output'];
   totalQuantity: Scalars['BigInt']['output'];
   traitModifiers?: Maybe<Array<Scalars['Int']['output']>>;
 };
+
+
+export type ItemTypeOwnersArgs = {
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ItemTypeOwnership_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  where?: InputMaybe<ItemTypeOwnership_Filter>;
+};
+
+export type ItemTypeOwnership = {
+  __typename?: 'ItemTypeOwnership';
+  balance: Scalars['BigInt']['output'];
+  id: Scalars['ID']['output'];
+  itemType: ItemType;
+  lastUpdated: Scalars['BigInt']['output'];
+  owner: Scalars['Bytes']['output'];
+};
+
+export type ItemTypeOwnership_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<ItemTypeOwnership_Filter>>>;
+  balance?: InputMaybe<Scalars['BigInt']['input']>;
+  balance_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  balance_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  balance_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  balance_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  balance_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  balance_not?: InputMaybe<Scalars['BigInt']['input']>;
+  balance_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_gt?: InputMaybe<Scalars['ID']['input']>;
+  id_gte?: InputMaybe<Scalars['ID']['input']>;
+  id_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_lt?: InputMaybe<Scalars['ID']['input']>;
+  id_lte?: InputMaybe<Scalars['ID']['input']>;
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  itemType?: InputMaybe<Scalars['String']['input']>;
+  itemType_?: InputMaybe<ItemType_Filter>;
+  itemType_contains?: InputMaybe<Scalars['String']['input']>;
+  itemType_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  itemType_ends_with?: InputMaybe<Scalars['String']['input']>;
+  itemType_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  itemType_gt?: InputMaybe<Scalars['String']['input']>;
+  itemType_gte?: InputMaybe<Scalars['String']['input']>;
+  itemType_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  itemType_lt?: InputMaybe<Scalars['String']['input']>;
+  itemType_lte?: InputMaybe<Scalars['String']['input']>;
+  itemType_not?: InputMaybe<Scalars['String']['input']>;
+  itemType_not_contains?: InputMaybe<Scalars['String']['input']>;
+  itemType_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  itemType_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  itemType_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  itemType_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  itemType_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  itemType_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  itemType_starts_with?: InputMaybe<Scalars['String']['input']>;
+  itemType_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  lastUpdated?: InputMaybe<Scalars['BigInt']['input']>;
+  lastUpdated_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastUpdated_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastUpdated_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  lastUpdated_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  lastUpdated_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  lastUpdated_not?: InputMaybe<Scalars['BigInt']['input']>;
+  lastUpdated_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  or?: InputMaybe<Array<InputMaybe<ItemTypeOwnership_Filter>>>;
+  owner?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  owner_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_not?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  owner_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+};
+
+export enum ItemTypeOwnership_OrderBy {
+  Balance = 'balance',
+  Id = 'id',
+  ItemType = 'itemType',
+  ItemTypeAuthor = 'itemType__author',
+  ItemTypeCanBeTransferred = 'itemType__canBeTransferred',
+  ItemTypeCanPurchaseWithGhst = 'itemType__canPurchaseWithGhst',
+  ItemTypeCategory = 'itemType__category',
+  ItemTypeConsumed = 'itemType__consumed',
+  ItemTypeDesc = 'itemType__desc',
+  ItemTypeExperienceBonus = 'itemType__experienceBonus',
+  ItemTypeGhstPrice = 'itemType__ghstPrice',
+  ItemTypeId = 'itemType__id',
+  ItemTypeKinshipBonus = 'itemType__kinshipBonus',
+  ItemTypeMaxQuantity = 'itemType__maxQuantity',
+  ItemTypeMinLevel = 'itemType__minLevel',
+  ItemTypeName = 'itemType__name',
+  ItemTypeRarityScoreModifier = 'itemType__rarityScoreModifier',
+  ItemTypeSvgId = 'itemType__svgId',
+  ItemTypeTotalQuantity = 'itemType__totalQuantity',
+  LastUpdated = 'lastUpdated',
+  Owner = 'owner'
+}
 
 export type ItemType_Filter = {
   /** Filter for the block changed event. */
@@ -3425,6 +4310,7 @@ export type ItemType_Filter = {
   name_starts_with?: InputMaybe<Scalars['String']['input']>;
   name_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
   or?: InputMaybe<Array<InputMaybe<ItemType_Filter>>>;
+  owners_?: InputMaybe<ItemTypeOwnership_Filter>;
   rarityScoreModifier?: InputMaybe<Scalars['Int']['input']>;
   rarityScoreModifier_gt?: InputMaybe<Scalars['Int']['input']>;
   rarityScoreModifier_gte?: InputMaybe<Scalars['Int']['input']>;
@@ -3477,6 +4363,7 @@ export enum ItemType_OrderBy {
   MaxQuantity = 'maxQuantity',
   MinLevel = 'minLevel',
   Name = 'name',
+  Owners = 'owners',
   RarityScoreModifier = 'rarityScoreModifier',
   SlotPositions = 'slotPositions',
   SvgId = 'svgId',
@@ -4153,8 +5040,9 @@ export type Portal = {
   __typename?: 'Portal';
   activeListing?: Maybe<Scalars['BigInt']['output']>;
   boughtAt?: Maybe<Scalars['BigInt']['output']>;
-  buyer: User;
+  buyer?: Maybe<User>;
   claimedAt?: Maybe<Scalars['BigInt']['output']>;
+  claimedAtPolygon?: Maybe<Scalars['BigInt']['output']>;
   claimedTime?: Maybe<Scalars['BigInt']['output']>;
   gotchi?: Maybe<Aavegotchi>;
   gotchiId?: Maybe<Scalars['BigInt']['output']>;
@@ -4225,6 +5113,14 @@ export type Portal_Filter = {
   buyer_starts_with?: InputMaybe<Scalars['String']['input']>;
   buyer_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
   claimedAt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  claimedAtPolygon_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_not?: InputMaybe<Scalars['BigInt']['input']>;
+  claimedAtPolygon_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
   claimedAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
   claimedAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
   claimedAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
@@ -4349,18 +5245,28 @@ export enum Portal_OrderBy {
   BuyerTotalUniqueFakeGotchisOwned = 'buyer__totalUniqueFakeGotchisOwned',
   BuyerTotalUniqueFakeGotchisOwnedArray = 'buyer__totalUniqueFakeGotchisOwnedArray',
   ClaimedAt = 'claimedAt',
+  ClaimedAtPolygon = 'claimedAtPolygon',
   ClaimedTime = 'claimedTime',
   Gotchi = 'gotchi',
+  GotchiId = 'gotchiId',
   GotchiActiveListing = 'gotchi__activeListing',
+  GotchiBaseAggression = 'gotchi__baseAggression',
+  GotchiBaseBrain = 'gotchi__baseBrain',
+  GotchiBaseEnergy = 'gotchi__baseEnergy',
   GotchiBaseRarityScore = 'gotchi__baseRarityScore',
+  GotchiBaseSpookiness = 'gotchi__baseSpookiness',
   GotchiClaimedAt = 'gotchi__claimedAt',
+  GotchiClaimedAtPolygon = 'gotchi__claimedAtPolygon',
   GotchiClaimedTime = 'gotchi__claimedTime',
   GotchiCollateral = 'gotchi__collateral',
   GotchiCreatedAt = 'gotchi__createdAt',
+  GotchiCreatedAtPolygon = 'gotchi__createdAtPolygon',
   GotchiEquippedSetId = 'gotchi__equippedSetID',
   GotchiEquippedSetName = 'gotchi__equippedSetName',
   GotchiEscrow = 'gotchi__escrow',
   GotchiExperience = 'gotchi__experience',
+  GotchiEyeColor = 'gotchi__eyeColor',
+  GotchiEyeShape = 'gotchi__eyeShape',
   GotchiGotchiId = 'gotchi__gotchiId',
   GotchiHauntId = 'gotchi__hauntId',
   GotchiId = 'gotchi__id',
@@ -4370,7 +5276,11 @@ export enum Portal_OrderBy {
   GotchiLevel = 'gotchi__level',
   GotchiLocked = 'gotchi__locked',
   GotchiMinimumStake = 'gotchi__minimumStake',
+  GotchiModifiedAggression = 'gotchi__modifiedAggression',
+  GotchiModifiedBrain = 'gotchi__modifiedBrain',
+  GotchiModifiedEnergy = 'gotchi__modifiedEnergy',
   GotchiModifiedRarityScore = 'gotchi__modifiedRarityScore',
+  GotchiModifiedSpookiness = 'gotchi__modifiedSpookiness',
   GotchiName = 'gotchi__name',
   GotchiNameLowerCase = 'gotchi__nameLowerCase',
   GotchiPossibleSets = 'gotchi__possibleSets',
@@ -4409,10 +5319,16 @@ export type Query = {
   aavegotchis: Array<Aavegotchi>;
   claimedToken?: Maybe<ClaimedToken>;
   claimedTokens: Array<ClaimedToken>;
+  equippedWearableOwner?: Maybe<EquippedWearableOwner>;
+  equippedWearableOwners: Array<EquippedWearableOwner>;
   erc721BuyOrder?: Maybe<Erc721BuyOrder>;
   erc721BuyOrders: Array<Erc721BuyOrder>;
   erc721Listing?: Maybe<Erc721Listing>;
   erc721Listings: Array<Erc721Listing>;
+  erc1155BuyOrder?: Maybe<Erc1155BuyOrder>;
+  erc1155BuyOrderExecution?: Maybe<Erc1155BuyOrderExecution>;
+  erc1155BuyOrderExecutions: Array<Erc1155BuyOrderExecution>;
+  erc1155BuyOrders: Array<Erc1155BuyOrder>;
   erc1155Listing?: Maybe<Erc1155Listing>;
   erc1155Listings: Array<Erc1155Listing>;
   erc1155Purchase?: Maybe<Erc1155Purchase>;
@@ -4432,6 +5348,8 @@ export type Query = {
   gotchiLending?: Maybe<GotchiLending>;
   gotchiLendings: Array<GotchiLending>;
   itemType?: Maybe<ItemType>;
+  itemTypeOwnership?: Maybe<ItemTypeOwnership>;
+  itemTypeOwnerships: Array<ItemTypeOwnership>;
   itemTypes: Array<ItemType>;
   metadataActionLog?: Maybe<MetadataActionLog>;
   metadataActionLogs: Array<MetadataActionLog>;
@@ -4447,12 +5365,16 @@ export type Query = {
   rolesRegistry?: Maybe<RolesRegistry>;
   statistic?: Maybe<Statistic>;
   statistics: Array<Statistic>;
+  swapAction?: Maybe<SwapAction>;
+  swapActions: Array<SwapAction>;
   tokenCommitment?: Maybe<TokenCommitment>;
   tokenCommitments: Array<TokenCommitment>;
   user?: Maybe<User>;
   users: Array<User>;
   wearableSet?: Maybe<WearableSet>;
   wearableSets: Array<WearableSet>;
+  wearablesConfig?: Maybe<WearablesConfig>;
+  wearablesConfigs: Array<WearablesConfig>;
   whitelist?: Maybe<Whitelist>;
   whitelists: Array<Whitelist>;
 };
@@ -4517,6 +5439,24 @@ export type QueryClaimedTokensArgs = {
 };
 
 
+export type QueryEquippedWearableOwnerArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID']['input'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryEquippedWearableOwnersArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<EquippedWearableOwner_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<EquippedWearableOwner_Filter>;
+};
+
+
 export type QueryErc721BuyOrderArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID']['input'];
@@ -4550,6 +5490,42 @@ export type QueryErc721ListingsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<Erc721Listing_Filter>;
+};
+
+
+export type QueryErc1155BuyOrderArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID']['input'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryErc1155BuyOrderExecutionArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID']['input'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryErc1155BuyOrderExecutionsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Erc1155BuyOrderExecution_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<Erc1155BuyOrderExecution_Filter>;
+};
+
+
+export type QueryErc1155BuyOrdersArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<Erc1155BuyOrder_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<Erc1155BuyOrder_Filter>;
 };
 
 
@@ -4722,6 +5698,24 @@ export type QueryItemTypeArgs = {
 };
 
 
+export type QueryItemTypeOwnershipArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID']['input'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryItemTypeOwnershipsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<ItemTypeOwnership_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<ItemTypeOwnership_Filter>;
+};
+
+
 export type QueryItemTypesArgs = {
   block?: InputMaybe<Block_Height>;
   first?: InputMaybe<Scalars['Int']['input']>;
@@ -4859,6 +5853,24 @@ export type QueryStatisticsArgs = {
 };
 
 
+export type QuerySwapActionArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID']['input'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QuerySwapActionsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<SwapAction_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<SwapAction_Filter>;
+};
+
+
 export type QueryTokenCommitmentArgs = {
   block?: InputMaybe<Block_Height>;
   id: Scalars['ID']['input'];
@@ -4910,6 +5922,24 @@ export type QueryWearableSetsArgs = {
   skip?: InputMaybe<Scalars['Int']['input']>;
   subgraphError?: _SubgraphErrorPolicy_;
   where?: InputMaybe<WearableSet_Filter>;
+};
+
+
+export type QueryWearablesConfigArgs = {
+  block?: InputMaybe<Block_Height>;
+  id: Scalars['ID']['input'];
+  subgraphError?: _SubgraphErrorPolicy_;
+};
+
+
+export type QueryWearablesConfigsArgs = {
+  block?: InputMaybe<Block_Height>;
+  first?: InputMaybe<Scalars['Int']['input']>;
+  orderBy?: InputMaybe<WearablesConfig_OrderBy>;
+  orderDirection?: InputMaybe<OrderDirection>;
+  skip?: InputMaybe<Scalars['Int']['input']>;
+  subgraphError?: _SubgraphErrorPolicy_;
+  where?: InputMaybe<WearablesConfig_Filter>;
 };
 
 
@@ -5605,536 +6635,107 @@ export enum Statistic_OrderBy {
   TotalWearablesVolume = 'totalWearablesVolume'
 }
 
-export type Subscription = {
-  __typename?: 'Subscription';
-  /** Access to subgraph metadata */
-  _meta?: Maybe<_Meta_>;
-  aavegotchi?: Maybe<Aavegotchi>;
-  aavegotchiOption?: Maybe<AavegotchiOption>;
-  aavegotchiOptions: Array<AavegotchiOption>;
-  aavegotchis: Array<Aavegotchi>;
-  claimedToken?: Maybe<ClaimedToken>;
-  claimedTokens: Array<ClaimedToken>;
-  erc721BuyOrder?: Maybe<Erc721BuyOrder>;
-  erc721BuyOrders: Array<Erc721BuyOrder>;
-  erc721Listing?: Maybe<Erc721Listing>;
-  erc721Listings: Array<Erc721Listing>;
-  erc1155Listing?: Maybe<Erc1155Listing>;
-  erc1155Listings: Array<Erc1155Listing>;
-  erc1155Purchase?: Maybe<Erc1155Purchase>;
-  erc1155Purchases: Array<Erc1155Purchase>;
-  fakeGotchiCardBalance?: Maybe<FakeGotchiCardBalance>;
-  fakeGotchiCardBalances: Array<FakeGotchiCardBalance>;
-  fakeGotchiHolder?: Maybe<FakeGotchiHolder>;
-  fakeGotchiHolders: Array<FakeGotchiHolder>;
-  fakeGotchiNFTToken?: Maybe<FakeGotchiNftToken>;
-  fakeGotchiNFTTokens: Array<FakeGotchiNftToken>;
-  fakeGotchiNFTTransfer?: Maybe<FakeGotchiNftTransfer>;
-  fakeGotchiNFTTransfers: Array<FakeGotchiNftTransfer>;
-  fakeGotchiStatistic?: Maybe<FakeGotchiStatistic>;
-  fakeGotchiStatistics: Array<FakeGotchiStatistic>;
-  generation?: Maybe<Generation>;
-  generations: Array<Generation>;
-  gotchiLending?: Maybe<GotchiLending>;
-  gotchiLendings: Array<GotchiLending>;
-  itemType?: Maybe<ItemType>;
-  itemTypes: Array<ItemType>;
-  metadataActionLog?: Maybe<MetadataActionLog>;
-  metadataActionLogs: Array<MetadataActionLog>;
-  parcel?: Maybe<Parcel>;
-  parcels: Array<Parcel>;
-  portal?: Maybe<Portal>;
-  portals: Array<Portal>;
-  role?: Maybe<Role>;
-  roleAssignment?: Maybe<RoleAssignment>;
-  roleAssignments: Array<RoleAssignment>;
-  roles: Array<Role>;
-  rolesRegistries: Array<RolesRegistry>;
-  rolesRegistry?: Maybe<RolesRegistry>;
-  statistic?: Maybe<Statistic>;
-  statistics: Array<Statistic>;
-  tokenCommitment?: Maybe<TokenCommitment>;
-  tokenCommitments: Array<TokenCommitment>;
-  user?: Maybe<User>;
-  users: Array<User>;
-  wearableSet?: Maybe<WearableSet>;
-  wearableSets: Array<WearableSet>;
-  whitelist?: Maybe<Whitelist>;
-  whitelists: Array<Whitelist>;
+export type SwapAction = {
+  __typename?: 'SwapAction';
+  amountIn: Scalars['BigInt']['output'];
+  amountOut: Scalars['BigInt']['output'];
+  createdAt: Scalars['BigInt']['output'];
+  fromAddress: Scalars['Bytes']['output'];
+  id: Scalars['ID']['output'];
+  tokenIn: Scalars['Bytes']['output'];
+  tokenOut: Scalars['Bytes']['output'];
+  txHash: Scalars['Bytes']['output'];
 };
 
-
-export type Subscription_MetaArgs = {
-  block?: InputMaybe<Block_Height>;
+export type SwapAction_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  amountIn?: InputMaybe<Scalars['BigInt']['input']>;
+  amountIn_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  amountIn_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  amountIn_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  amountIn_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  amountIn_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  amountIn_not?: InputMaybe<Scalars['BigInt']['input']>;
+  amountIn_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  amountOut?: InputMaybe<Scalars['BigInt']['input']>;
+  amountOut_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  amountOut_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  amountOut_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  amountOut_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  amountOut_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  amountOut_not?: InputMaybe<Scalars['BigInt']['input']>;
+  amountOut_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  and?: InputMaybe<Array<InputMaybe<SwapAction_Filter>>>;
+  createdAt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  createdAt_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_not?: InputMaybe<Scalars['BigInt']['input']>;
+  createdAt_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  fromAddress?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  fromAddress_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_not?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  fromAddress_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_gt?: InputMaybe<Scalars['ID']['input']>;
+  id_gte?: InputMaybe<Scalars['ID']['input']>;
+  id_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_lt?: InputMaybe<Scalars['ID']['input']>;
+  id_lte?: InputMaybe<Scalars['ID']['input']>;
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  or?: InputMaybe<Array<InputMaybe<SwapAction_Filter>>>;
+  tokenIn?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  tokenIn_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_not?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenIn_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  tokenOut?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  tokenOut_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_not?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  tokenOut_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  txHash?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  txHash_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_not?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  txHash_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
 };
 
-
-export type SubscriptionAavegotchiArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionAavegotchiOptionArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionAavegotchiOptionsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<AavegotchiOption_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<AavegotchiOption_Filter>;
-};
-
-
-export type SubscriptionAavegotchisArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Aavegotchi_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Aavegotchi_Filter>;
-};
-
-
-export type SubscriptionClaimedTokenArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionClaimedTokensArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<ClaimedToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<ClaimedToken_Filter>;
-};
-
-
-export type SubscriptionErc721BuyOrderArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionErc721BuyOrdersArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Erc721BuyOrder_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Erc721BuyOrder_Filter>;
-};
-
-
-export type SubscriptionErc721ListingArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionErc721ListingsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Erc721Listing_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Erc721Listing_Filter>;
-};
-
-
-export type SubscriptionErc1155ListingArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionErc1155ListingsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Erc1155Listing_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Erc1155Listing_Filter>;
-};
-
-
-export type SubscriptionErc1155PurchaseArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionErc1155PurchasesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Erc1155Purchase_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Erc1155Purchase_Filter>;
-};
-
-
-export type SubscriptionFakeGotchiCardBalanceArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionFakeGotchiCardBalancesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FakeGotchiCardBalance_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<FakeGotchiCardBalance_Filter>;
-};
-
-
-export type SubscriptionFakeGotchiHolderArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionFakeGotchiHoldersArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FakeGotchiHolder_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<FakeGotchiHolder_Filter>;
-};
-
-
-export type SubscriptionFakeGotchiNftTokenArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionFakeGotchiNftTokensArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FakeGotchiNftToken_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<FakeGotchiNftToken_Filter>;
-};
-
-
-export type SubscriptionFakeGotchiNftTransferArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionFakeGotchiNftTransfersArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FakeGotchiNftTransfer_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<FakeGotchiNftTransfer_Filter>;
-};
-
-
-export type SubscriptionFakeGotchiStatisticArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionFakeGotchiStatisticsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<FakeGotchiStatistic_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<FakeGotchiStatistic_Filter>;
-};
-
-
-export type SubscriptionGenerationArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionGenerationsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Generation_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Generation_Filter>;
-};
-
-
-export type SubscriptionGotchiLendingArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionGotchiLendingsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<GotchiLending_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<GotchiLending_Filter>;
-};
-
-
-export type SubscriptionItemTypeArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionItemTypesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<ItemType_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<ItemType_Filter>;
-};
-
-
-export type SubscriptionMetadataActionLogArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionMetadataActionLogsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<MetadataActionLog_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<MetadataActionLog_Filter>;
-};
-
-
-export type SubscriptionParcelArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionParcelsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Parcel_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Parcel_Filter>;
-};
-
-
-export type SubscriptionPortalArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionPortalsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Portal_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Portal_Filter>;
-};
-
-
-export type SubscriptionRoleArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionRoleAssignmentArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionRoleAssignmentsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<RoleAssignment_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<RoleAssignment_Filter>;
-};
-
-
-export type SubscriptionRolesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Role_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Role_Filter>;
-};
-
-
-export type SubscriptionRolesRegistriesArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<RolesRegistry_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<RolesRegistry_Filter>;
-};
-
-
-export type SubscriptionRolesRegistryArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionStatisticArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionStatisticsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Statistic_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Statistic_Filter>;
-};
-
-
-export type SubscriptionTokenCommitmentArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionTokenCommitmentsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<TokenCommitment_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<TokenCommitment_Filter>;
-};
-
-
-export type SubscriptionUserArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionUsersArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<User_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<User_Filter>;
-};
-
-
-export type SubscriptionWearableSetArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionWearableSetsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<WearableSet_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<WearableSet_Filter>;
-};
-
-
-export type SubscriptionWhitelistArgs = {
-  block?: InputMaybe<Block_Height>;
-  id: Scalars['ID']['input'];
-  subgraphError?: _SubgraphErrorPolicy_;
-};
-
-
-export type SubscriptionWhitelistsArgs = {
-  block?: InputMaybe<Block_Height>;
-  first?: InputMaybe<Scalars['Int']['input']>;
-  orderBy?: InputMaybe<Whitelist_OrderBy>;
-  orderDirection?: InputMaybe<OrderDirection>;
-  skip?: InputMaybe<Scalars['Int']['input']>;
-  subgraphError?: _SubgraphErrorPolicy_;
-  where?: InputMaybe<Whitelist_Filter>;
-};
+export enum SwapAction_OrderBy {
+  AmountIn = 'amountIn',
+  AmountOut = 'amountOut',
+  CreatedAt = 'createdAt',
+  FromAddress = 'fromAddress',
+  Id = 'id',
+  TokenIn = 'tokenIn',
+  TokenOut = 'tokenOut',
+  TxHash = 'txHash'
+}
 
 export type TokenCommitment = {
   __typename?: 'TokenCommitment';
@@ -6607,6 +7208,188 @@ export enum WearableSet_OrderBy {
   WearableIds = 'wearableIds'
 }
 
+export type WearablesConfig = {
+  __typename?: 'WearablesConfig';
+  gotchi: Aavegotchi;
+  gotchiTokenId: Scalars['BigInt']['output'];
+  id: Scalars['ID']['output'];
+  name: Scalars['String']['output'];
+  owner: User;
+  ownerAddress: Scalars['Bytes']['output'];
+  wearables: Array<Scalars['Int']['output']>;
+  wearablesConfigId: Scalars['Int']['output'];
+};
+
+export type WearablesConfig_Filter = {
+  /** Filter for the block changed event. */
+  _change_block?: InputMaybe<BlockChangedFilter>;
+  and?: InputMaybe<Array<InputMaybe<WearablesConfig_Filter>>>;
+  gotchi?: InputMaybe<Scalars['String']['input']>;
+  gotchiTokenId?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiTokenId_gt?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiTokenId_gte?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiTokenId_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  gotchiTokenId_lt?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiTokenId_lte?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiTokenId_not?: InputMaybe<Scalars['BigInt']['input']>;
+  gotchiTokenId_not_in?: InputMaybe<Array<Scalars['BigInt']['input']>>;
+  gotchi_?: InputMaybe<Aavegotchi_Filter>;
+  gotchi_contains?: InputMaybe<Scalars['String']['input']>;
+  gotchi_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_ends_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_gt?: InputMaybe<Scalars['String']['input']>;
+  gotchi_gte?: InputMaybe<Scalars['String']['input']>;
+  gotchi_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  gotchi_lt?: InputMaybe<Scalars['String']['input']>;
+  gotchi_lte?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_contains?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  gotchi_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  gotchi_starts_with?: InputMaybe<Scalars['String']['input']>;
+  gotchi_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  id?: InputMaybe<Scalars['ID']['input']>;
+  id_gt?: InputMaybe<Scalars['ID']['input']>;
+  id_gte?: InputMaybe<Scalars['ID']['input']>;
+  id_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  id_lt?: InputMaybe<Scalars['ID']['input']>;
+  id_lte?: InputMaybe<Scalars['ID']['input']>;
+  id_not?: InputMaybe<Scalars['ID']['input']>;
+  id_not_in?: InputMaybe<Array<Scalars['ID']['input']>>;
+  name?: InputMaybe<Scalars['String']['input']>;
+  name_contains?: InputMaybe<Scalars['String']['input']>;
+  name_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  name_ends_with?: InputMaybe<Scalars['String']['input']>;
+  name_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  name_gt?: InputMaybe<Scalars['String']['input']>;
+  name_gte?: InputMaybe<Scalars['String']['input']>;
+  name_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  name_lt?: InputMaybe<Scalars['String']['input']>;
+  name_lte?: InputMaybe<Scalars['String']['input']>;
+  name_not?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains?: InputMaybe<Scalars['String']['input']>;
+  name_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  name_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  name_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  name_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  name_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  name_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  name_starts_with?: InputMaybe<Scalars['String']['input']>;
+  name_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  or?: InputMaybe<Array<InputMaybe<WearablesConfig_Filter>>>;
+  owner?: InputMaybe<Scalars['String']['input']>;
+  ownerAddress?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_gt?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_gte?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  ownerAddress_lt?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_lte?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_not?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_not_contains?: InputMaybe<Scalars['Bytes']['input']>;
+  ownerAddress_not_in?: InputMaybe<Array<Scalars['Bytes']['input']>>;
+  owner_?: InputMaybe<User_Filter>;
+  owner_contains?: InputMaybe<Scalars['String']['input']>;
+  owner_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_ends_with?: InputMaybe<Scalars['String']['input']>;
+  owner_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_gt?: InputMaybe<Scalars['String']['input']>;
+  owner_gte?: InputMaybe<Scalars['String']['input']>;
+  owner_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  owner_lt?: InputMaybe<Scalars['String']['input']>;
+  owner_lte?: InputMaybe<Scalars['String']['input']>;
+  owner_not?: InputMaybe<Scalars['String']['input']>;
+  owner_not_contains?: InputMaybe<Scalars['String']['input']>;
+  owner_not_contains_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_not_ends_with?: InputMaybe<Scalars['String']['input']>;
+  owner_not_ends_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_not_in?: InputMaybe<Array<Scalars['String']['input']>>;
+  owner_not_starts_with?: InputMaybe<Scalars['String']['input']>;
+  owner_not_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  owner_starts_with?: InputMaybe<Scalars['String']['input']>;
+  owner_starts_with_nocase?: InputMaybe<Scalars['String']['input']>;
+  wearables?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearablesConfigId?: InputMaybe<Scalars['Int']['input']>;
+  wearablesConfigId_gt?: InputMaybe<Scalars['Int']['input']>;
+  wearablesConfigId_gte?: InputMaybe<Scalars['Int']['input']>;
+  wearablesConfigId_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearablesConfigId_lt?: InputMaybe<Scalars['Int']['input']>;
+  wearablesConfigId_lte?: InputMaybe<Scalars['Int']['input']>;
+  wearablesConfigId_not?: InputMaybe<Scalars['Int']['input']>;
+  wearablesConfigId_not_in?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearables_contains?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearables_contains_nocase?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearables_not?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearables_not_contains?: InputMaybe<Array<Scalars['Int']['input']>>;
+  wearables_not_contains_nocase?: InputMaybe<Array<Scalars['Int']['input']>>;
+};
+
+export enum WearablesConfig_OrderBy {
+  Gotchi = 'gotchi',
+  GotchiTokenId = 'gotchiTokenId',
+  GotchiActiveListing = 'gotchi__activeListing',
+  GotchiBaseAggression = 'gotchi__baseAggression',
+  GotchiBaseBrain = 'gotchi__baseBrain',
+  GotchiBaseEnergy = 'gotchi__baseEnergy',
+  GotchiBaseRarityScore = 'gotchi__baseRarityScore',
+  GotchiBaseSpookiness = 'gotchi__baseSpookiness',
+  GotchiClaimedAt = 'gotchi__claimedAt',
+  GotchiClaimedAtPolygon = 'gotchi__claimedAtPolygon',
+  GotchiClaimedTime = 'gotchi__claimedTime',
+  GotchiCollateral = 'gotchi__collateral',
+  GotchiCreatedAt = 'gotchi__createdAt',
+  GotchiCreatedAtPolygon = 'gotchi__createdAtPolygon',
+  GotchiEquippedSetId = 'gotchi__equippedSetID',
+  GotchiEquippedSetName = 'gotchi__equippedSetName',
+  GotchiEscrow = 'gotchi__escrow',
+  GotchiExperience = 'gotchi__experience',
+  GotchiEyeColor = 'gotchi__eyeColor',
+  GotchiEyeShape = 'gotchi__eyeShape',
+  GotchiGotchiId = 'gotchi__gotchiId',
+  GotchiHauntId = 'gotchi__hauntId',
+  GotchiId = 'gotchi__id',
+  GotchiKinship = 'gotchi__kinship',
+  GotchiLastInteracted = 'gotchi__lastInteracted',
+  GotchiLending = 'gotchi__lending',
+  GotchiLevel = 'gotchi__level',
+  GotchiLocked = 'gotchi__locked',
+  GotchiMinimumStake = 'gotchi__minimumStake',
+  GotchiModifiedAggression = 'gotchi__modifiedAggression',
+  GotchiModifiedBrain = 'gotchi__modifiedBrain',
+  GotchiModifiedEnergy = 'gotchi__modifiedEnergy',
+  GotchiModifiedRarityScore = 'gotchi__modifiedRarityScore',
+  GotchiModifiedSpookiness = 'gotchi__modifiedSpookiness',
+  GotchiName = 'gotchi__name',
+  GotchiNameLowerCase = 'gotchi__nameLowerCase',
+  GotchiPossibleSets = 'gotchi__possibleSets',
+  GotchiRandomNumber = 'gotchi__randomNumber',
+  GotchiStakedAmount = 'gotchi__stakedAmount',
+  GotchiStatus = 'gotchi__status',
+  GotchiTimesTraded = 'gotchi__timesTraded',
+  GotchiToNextLevel = 'gotchi__toNextLevel',
+  GotchiUsedSkillPoints = 'gotchi__usedSkillPoints',
+  GotchiWithSetsRarityScore = 'gotchi__withSetsRarityScore',
+  Id = 'id',
+  Name = 'name',
+  Owner = 'owner',
+  OwnerAddress = 'ownerAddress',
+  OwnerAmountFakeGotchis = 'owner__amountFakeGotchis',
+  OwnerCurrentUniqueFakeGotchisOwned = 'owner__currentUniqueFakeGotchisOwned',
+  OwnerCurrentUniqueFakeGotchisOwnedArray = 'owner__currentUniqueFakeGotchisOwnedArray',
+  OwnerFakeGotchis = 'owner__fakeGotchis',
+  OwnerId = 'owner__id',
+  OwnerTotalFakeGotchisOwnedArray = 'owner__totalFakeGotchisOwnedArray',
+  OwnerTotalUniqueFakeGotchisOwned = 'owner__totalUniqueFakeGotchisOwned',
+  OwnerTotalUniqueFakeGotchisOwnedArray = 'owner__totalUniqueFakeGotchisOwnedArray',
+  Wearables = 'wearables',
+  WearablesConfigId = 'wearablesConfigId'
+}
+
 export type Whitelist = {
   __typename?: 'Whitelist';
   id: Scalars['ID']['output'];
@@ -6735,7 +7518,6 @@ export type _Meta_ = {
    * will be null if the _meta field has a block constraint that asks for
    * a block number. It will be filled if the _meta field has no block constraint
    * and therefore asks for the latest  block
-   *
    */
   block: _Block_;
   /** The deployment ID */

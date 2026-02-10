@@ -1,6 +1,6 @@
 import { defineConfig } from '@wagmi/cli'
 import { etherscan, react } from '@wagmi/cli/plugins'
-import { polygon } from 'wagmi/chains'
+import { base } from 'wagmi/chains'
 
 export default defineConfig({
   out: 'src/contracts/_generated.ts',
@@ -8,7 +8,7 @@ export default defineConfig({
   plugins: [
     etherscan({
       apiKey: "J216UIQZC5WPZNQIKD1CX38C8X8CVAQPAA",
-      chainId: polygon.id,
+      chainId: base.id,
       contracts: [
         // {
         //   name: 'Escrow',
@@ -18,11 +18,11 @@ export default defineConfig({
         // }, 
         {
           name: 'AavegotchiDiamond',
-          address: '0x86935F11C86623deC8a25696E1C19a8659CbF95d'
+          address: '0xa99c4b08201f2913db8d28e71d020c4298f29dbf'
         },
         {
           name: 'Wearables',
-          address: "0x58de9AaBCaeEC0f69883C94318810ad79Cc6a44f"
+          address: '0x052e6c114a166B0e91C2340370d72D4C33752B4b'
         },
       ]
     }),

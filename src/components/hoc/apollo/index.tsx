@@ -3,11 +3,11 @@ import { PropsWithChildren } from "react";
 
 export const InjectApollo = ( props: PropsWithChildren) => {
     const coreLink = new HttpLink({
-        uri: "https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-core-matic/api",
+        uri: "https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-core-base/prod/gn",
       });
     
       const svgLink = new HttpLink({
-        uri: "https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-svg-matic/api",
+        uri: "https://api.goldsky.com/api/public/project_cmh3flagm0001r4p25foufjtt/subgraphs/aavegotchi-svg-base/prod/gn",
       });
     
       const client = new ApolloClient({

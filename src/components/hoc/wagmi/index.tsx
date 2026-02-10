@@ -5,7 +5,7 @@ import {
   w3mProvider,
 } from "@web3modal/ethereum";
 import { Web3Modal } from "@web3modal/react";
-import { polygon } from "viem/chains";
+import { base } from "viem/chains";
 import { WagmiConfig, configureChains, createConfig } from "wagmi";
 import { jsonRpcProvider } from "wagmi/providers/jsonRpc";
 
@@ -20,13 +20,13 @@ export const InjectWagmi = (props: PropsWithChildren) => {
   //     appUrl: "https://gotchiswap.xyz",
   //     appIcon: "https://gotchiswap.xyz/images/logo.png",
   //     publicClient: createPublicClient({
-  //       chain: polygon,
+  //       chain: base,
   //       transport: http(),
   //     }),
   //   })
   // );
 
-  const chains = [polygon];
+  const chains = [base];
   const projectId = "0feff3f81d41f59c2705120f38efc5d6";
   
   const { publicClient } = configureChains(chains, [
@@ -51,7 +51,7 @@ export const InjectWagmi = (props: PropsWithChildren) => {
       <Web3Modal
         projectId={projectId}
         ethereumClient={ethereumClient}
-        defaultChain={polygon}
+        defaultChain={base}
         themeMode="dark"
         themeVariables={{
           "--w3m-font-family": "Kanit, sans-serif",
