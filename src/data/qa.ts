@@ -25,8 +25,8 @@ export const qaArray: qaItem[] = [{
   `
 }, {
   q: `Is the contract audited ?`,
-  a: `No, but the contract is verified on polygonscan and the code is open source.
-  * [*Click here to access the contract on polygonscan*](https://polygonscan.com/address/0xfe4b96f1860c5a2a09cd4bd5c341632c9e9486e6)
+  a: `No, but the contract is verified on basescan and the code is open source.
+  * [*Click here to access the contract on basescan*](https://basescan.org/address/0x34A29b350E02B4A2ba7b5Dfc67402B52473793d5)
   * [*Click here to access the contract on github*](https://github.com/pgendreau/gotchiswap-contracts)`
 }, {
   q: `Is the dapp open source ?`,
