@@ -1,24 +1,20 @@
-import { escrowAbi } from "@/abis/escrow"
 import { convertAddressType, isAddressValid, isGetSaleResult, saleItemDTO } from "@/helpers/tools"
-import { SaleItem, SaleV2 } from "@/types/types"
-import { use, useEffect, useState } from "react"
-import { readContract, multicall } from "@wagmi/core";
+import { SaleV2 } from "@/types/types"
+import { useEffect, useState } from "react"
+import { readContract, multicall, type Config } from "@wagmi/core";
 import { useAccount } from "wagmi"
 import { gotchiswapAbi } from "@/abis/gotchiswap-abi";
 
-
-
-export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
+export const useBuys = (config: Config): { buys: SaleV2[], isLoading: boolean } => {
   const { address } = useAccount()
   const [buys, setBuys] = useState<SaleV2[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
-
 
   useEffect(() => {
     const getBuys = async () => {
 
       const otcContract = {
-        address: process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS,
+        address: convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS),
         abi: gotchiswapAbi
       }
 
@@ -26,10 +22,10 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
 
       // sale array. But we call it buys because we are the buyer....
       const buys: SaleV2[] = []
-
+ 
       try {
         // Initial getBuyerOffersCount call
-        const buyerSaleCount = await readContract({
+        const buyerSaleCount = await readContract(config, {
           address: convertAddressType(
             process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS
           ),
@@ -44,7 +40,6 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
         }
 
         //prepare multiCall of getOffer
-        const tmpSales: SaleV2[] = []
         const getOfferCalls: any[] = []
 
         for (let i = 0; i < buyerSaleCount; i++) {
@@ -57,7 +52,7 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
         }
 
         // multicall of getOffer
-        const getOffersResults = await multicall({
+        const getOffersResults = await multicall(config, {
           contracts: getOfferCalls
         })
 
@@ -65,10 +60,8 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
         const getSaleIndexCalls: any[] = []
         for (const offer of getOffersResults) {
           if (Array.isArray(offer.result) &&
-            offer.result[0] &&
             typeof offer.result[0] === 'string' &&
             isAddressValid(offer.result[0]) &&
-            offer.result[1] &&
             typeof offer.result[1] === 'bigint') {
             // We populate buys array from here, we will feed missing data later
             buys.push({
@@ -88,7 +81,7 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
           }
         }
         // getSaleIndex multicall
-        const getSaleIndexResults = await multicall({
+        const getSaleIndexResults = await multicall(config, {
           contracts: getSaleIndexCalls
         })
 
@@ -106,7 +99,7 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
           }
         }
 
-        const getSaleResults = await multicall({
+        const getSaleResults = await multicall(config, {
           contracts: getSaleCalls
         })
 
@@ -136,7 +129,7 @@ export const useBuys = (): { buys: SaleV2[], isLoading: boolean } => {
     }
 
     getBuys().then((result) => { setBuys(result); setIsLoading(false) })
-  }, [address])
+  }, [config, address])
 
   return { buys, isLoading }
 }

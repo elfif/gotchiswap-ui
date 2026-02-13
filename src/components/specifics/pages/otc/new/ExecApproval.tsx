@@ -1,8 +1,5 @@
 import { TxModal } from "@/components/specifics/modals/tx/TxModal";
 import { CartContext } from "@/contexts/CartContext";
-import { TxContext } from "@/contexts/TxContext";
-import { TxStatus } from "@/helpers/enums";
-import { sleep } from "@/helpers/tools";
 import { useApprovalExec } from "@/hooks/ApprovalExec";
 import {
   Dispatch,
@@ -11,6 +8,7 @@ import {
   useEffect,
   useState,
 } from "react";
+import { useConfig } from "wagmi";
 
 export const ExecApproval = () => {
   const [approveTxStarted, setApproveTxStarted] = useState<boolean>(false);
@@ -67,21 +65,17 @@ const ExecTx = (props: {
   setApproveTxStarted: Dispatch<SetStateAction<boolean>>;
 }) => {
   console.log("render ExecTx");
+  const config = useConfig();
   const cartCtx = useContext(CartContext);
-  //const txContext2 = useContext(TxContext);
   // I don't want to send a state var into the hook, so I copy the array
   // Not sure that is necessary
   const assetsCopy = [...cartCtx.assets];
-  const { status, txContext, assets } = useApprovalExec(assetsCopy, props.setApproveTxStarted);
-
-  //txContext2.setTxContextValue(txContext);
+  const { status, txContext, assets } = useApprovalExec(config, assetsCopy, props.setApproveTxStarted);
 
   useEffect(() => {
     console.log("useEffect in ExecTx");
     cartCtx.setAssets(assets);
-    //txContext2.setTxContextValue(txContext);
-  }, [cartCtx.setAssets, assets, sleep]);
+  }, [cartCtx.setAssets, assets]);
 
-  // return <>Transaction in progress</>
   return <TxModal txContext={txContext} />;
 };

@@ -5,9 +5,9 @@ import {
   readablePrice,
 } from "@/helpers/tools";
 import { SaleV2 } from "@/types/types";
-import { Dispatch, SetStateAction, useEffect } from "react";
+import { Dispatch, SetStateAction } from "react";
 import {
-  useContractWrite,
+  useWriteContract,
   useSimulateContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
@@ -20,7 +20,7 @@ type ApproveBuyButtonProps = {
 };
 
 export const ApproveBuyButton = (props: ApproveBuyButtonProps) => {
-  const prepareIncreaseAllowanceTx = useSimulateContract({
+  const { data: simulateData } = useSimulateContract({
     address: convertAddressType(process.env.NEXT_PUBLIC_GHST_CONTRACT_ADDRESS),
     abi: ghstAbi,
     functionName: "approve",
@@ -30,19 +30,11 @@ export const ApproveBuyButton = (props: ApproveBuyButtonProps) => {
     ],
   });
 
-  const increaseAllowanceTx = useContractWrite(
-    prepareIncreaseAllowanceTx.config
-  );
+  const { writeContract, data: hash, status: writeStatus, error: writeError } = useWriteContract();
 
   const waitForTx = useWaitForTransactionReceipt({
-    hash: increaseAllowanceTx.data?.hash,
+    hash,
   });
-
-  // useEffect(() => {
-  //   if (waitForTx.status === "success") {
-  //     props.setNeededAllowance(BigInt(0));
-  //   }
-  // }, [waitForTx.status, props.setNeededAllowance]);
 
   if (waitForTx.status === "success") {
     props.setNeededAllowance(BigInt(0));
@@ -50,10 +42,10 @@ export const ApproveBuyButton = (props: ApproveBuyButtonProps) => {
 
   const txContext = createTxContext(
     `Approve ${readablePrice(props.neededAllowance)} GHST`,
-    increaseAllowanceTx.status,
+    writeStatus,
     waitForTx.status,
-    increaseAllowanceTx.data?.hash,
-    increaseAllowanceTx.error,
+    hash,
+    writeError,
     waitForTx.error
   );
 
@@ -61,7 +53,7 @@ export const ApproveBuyButton = (props: ApproveBuyButtonProps) => {
     <>
       <button
         className="btn-base"
-        onClick={() => increaseAllowanceTx.write?.()}
+        onClick={() => simulateData && writeContract(simulateData.request)}
       >
         Approve then Buy
       </button>

@@ -1,10 +1,8 @@
 import { gotchiswapAbi } from "@/abis/gotchiswap-abi";
-import { TxStatus } from "@/helpers/enums";
 import { convertAddressType, createTxContext } from "@/helpers/tools";
-import { SaleV2, TxContextType } from "@/types/types";
-import { BaseError } from "viem";
+import { SaleV2 } from "@/types/types";
 import {
-  useContractWrite,
+  useWriteContract,
   useSimulateContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
@@ -13,18 +11,17 @@ import { useRouter } from "next/router";
 
 export const AbortSaleButton = (props: { sale: SaleV2 }) => {
   const router = useRouter();
-  const abortTxData = useSimulateContract({
+  const { data: simulateData } = useSimulateContract({
     address: convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS),
     abi: gotchiswapAbi,
     functionName: "abortSale",
     args: [props.sale.index],
-    chainId: 137,
   });
 
-  const txWriteData = useContractWrite(abortTxData.config);
+  const { writeContract, data: hash, status: writeStatus, error: writeError } = useWriteContract();
 
   const txWaitData = useWaitForTransactionReceipt({
-    hash: txWriteData.data?.hash,
+    hash,
   });
   
   if (txWaitData.isSuccess) {
@@ -33,16 +30,16 @@ export const AbortSaleButton = (props: { sale: SaleV2 }) => {
 
   const txContext = createTxContext(
     "Abort OTC Sale",
-    txWriteData.status,
+    writeStatus,
     txWaitData.status,
-    txWriteData.data?.hash,
-    txWriteData.error,
+    hash,
+    writeError,
     txWaitData.error
   )
 
   return (
     <>
-      <button className="btn-base" onClick={() => txWriteData.write?.()}>
+      <button className="btn-base" onClick={() => simulateData && writeContract(simulateData.request)}>
         Abort Sale
       </button>
       <TxModal txContext={txContext} />

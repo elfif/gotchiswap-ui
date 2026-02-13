@@ -11,14 +11,14 @@ import { OfferCard } from "../cards/OfferCard";
 export const BuysListing = (props: { buys: SaleV2[] }) => {
   // First we need to get all gotchi ids and portal ids from the buys
   // We grab them all at once so we do not need to multiply graph queries.
-  
+  debugger;
   const idsArray = props.buys.map((sale) =>
     sale.assets
       .filter(
         (saleItem) =>
           saleItem.class === AssetClass.ERC721 &&
-          saleItem.contract ===
-            process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS
+          saleItem.contract.toLowerCase() ===
+            process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS.toLowerCase()
       )
       .map((saleItem) => saleItem.id.toString())
   );

@@ -1,11 +1,11 @@
 import { convertAddressType, saleItemDTO } from "@/helpers/tools"
-import { SaleItem, SaleV2 } from "@/types/types"
+import { SaleV2 } from "@/types/types"
 import { useEffect, useState } from "react"
-import { readContract } from "@wagmi/core";
+import { readContract, type Config } from "@wagmi/core";
 import { useAccount } from "wagmi"
 import { gotchiswapAbi } from "@/abis/gotchiswap-abi";
 
-export const useSales = (): { sales: SaleV2[], isLoading: boolean } => {
+export const useSales = (config: Config): { sales: SaleV2[], isLoading: boolean } => {
   const { address } = useAccount()
   const [sales, setSales] = useState<SaleV2[]>([])
   const [isLoading, setIsLoading] = useState<boolean>(true)
@@ -15,7 +15,7 @@ export const useSales = (): { sales: SaleV2[], isLoading: boolean } => {
       if (!address) return []
 
       try {
-        const sellerSaleCount = await readContract({
+        const sellerSaleCount = await readContract(config, {
           address: convertAddressType(
             process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS
           ),
@@ -32,7 +32,7 @@ export const useSales = (): { sales: SaleV2[], isLoading: boolean } => {
 
         for (let i = 0; i < sellerSaleCount; i++) {
           // We need to fetch the sales one by one
-          const offer = await readContract({
+          const offer = await readContract(config, {
             address: convertAddressType(
               process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS
             ),
@@ -71,7 +71,7 @@ export const useSales = (): { sales: SaleV2[], isLoading: boolean } => {
       setIsLoading(false)
     }
     getSales()
-  }, [address])
+  }, [config, address])
 
   return { sales, isLoading }
 }

@@ -5,7 +5,7 @@ import {
 } from "@/helpers/tools";
 import { SaleV2 } from "@/types/types";
 import {
-  useContractWrite,
+  useWriteContract,
   useSimulateContract,
   useWaitForTransactionReceipt,
 } from "wagmi";
@@ -13,17 +13,17 @@ import { TxModal } from "../modals/tx/TxModal";
 import router from "next/router";
 
 export const BuyButton = (props: { sale: SaleV2 }) => {
-  const prepareBuyTx = useSimulateContract({
+  const { data: simulateData } = useSimulateContract({
     address: convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS),
     abi: gotchiswapAbi,
     functionName: "concludeSale",
     args: [props.sale.index],
   });
 
-  const buyTx = useContractWrite(prepareBuyTx.config);
+  const { writeContract, data: hash, status: writeStatus, error: writeError } = useWriteContract();
 
   const waitForTx = useWaitForTransactionReceipt({
-    hash: buyTx.data?.hash,
+    hash,
   });
 
   if (waitForTx.isSuccess) {
@@ -32,16 +32,16 @@ export const BuyButton = (props: { sale: SaleV2 }) => {
 
   const txContext = createTxContext(
     "LFG ! Buy It !",
-    buyTx.status,
+    writeStatus,
     waitForTx.status,
-    buyTx.data?.hash,
-    buyTx.error,
+    hash,
+    writeError,
     waitForTx.error
   );
 
   return (
     <>
-      <button className="btn-base" onClick={() => buyTx.write?.()}>
+      <button className="btn-base" onClick={() => simulateData && writeContract(simulateData.request)}>
         LFG ! Buy It !
       </button>
       <TxModal txContext={txContext} />

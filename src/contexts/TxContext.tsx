@@ -1,6 +1,4 @@
-import { TxStatus } from "@/helpers/enums";
 import { TxContextType, txContextDefaultValue } from "@/types/types";
-import { WriteContractResult } from "@wagmi/core";
 import {
   PropsWithChildren,
   createContext,

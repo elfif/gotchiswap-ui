@@ -1,4 +1,4 @@
-import { useAccount } from "wagmi";
+import { useAccount, useConfig } from "wagmi";
 import { useSales } from "@/hooks/Sales";
 import { SalesListing } from "./SalesListing";
 import { Loader } from "@/components/generics/loaders/Loader";
@@ -6,8 +6,9 @@ import { Loader } from "@/components/generics/loaders/Loader";
 export const SalesLoader = () => {
  
   const { address, isConnected } = useAccount();
+  const config = useConfig();
 
-  const { sales, isLoading } = useSales()
+  const { sales, isLoading } = useSales(config)
  
   if (isLoading) {
     return <div className="flex flex-row justify-start items-center gap-x-5">
