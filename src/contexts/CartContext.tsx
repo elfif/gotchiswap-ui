@@ -1,4 +1,4 @@
-import { ApprovableAsset, SelectableAsset } from "@/types/types";
+import { ApprovableAsset } from "@/types/types";
 import {
   PropsWithChildren,
   createContext,

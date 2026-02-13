@@ -177,8 +177,8 @@ export const getPortalImg = (portal: PortalFieldsFragment): string => {
  */
 export const createTxContext = (
   txLabel: string,
-  txWriteStatus:  "success" | "error" | "loading" | "idle",
-  txWaitStatus:  "success" | "error" | "loading" | "idle",
+  txWriteStatus:  "success" | "error" | "pending" | "idle",
+  txWaitStatus:  "success" | "error" | "pending",
   hash: `0x${string}` | undefined,
   txWriteError: Error | null,
   txWaitError: Error | null,
@@ -189,7 +189,7 @@ export const createTxContext = (
     status: TxStatus.IDLE,
   };
 
-  if (txWriteStatus === "loading" && txWaitStatus === "idle") {
+  if (txWriteStatus === "pending" && txWaitStatus === "pending" && !hash) {
     txContext = {
       operation: txLabel,
       hash: "0x0",
@@ -203,20 +203,28 @@ export const createTxContext = (
       errorMessage = txWriteError.shortMessage;
     } else if (txWaitError instanceof BaseError) {
       errorMessage = txWaitError.shortMessage;
-
-      txContext = {
-        operation: errorMessage,
-        hash: hash,
-        status: TxStatus.ERROR,
-      };
     }
+
+    txContext = {
+      operation: errorMessage,
+      hash: hash,
+      status: TxStatus.ERROR,
+    };
   }
 
-  if (txWriteStatus === 'success' && txWaitStatus === 'loading') {
+  if (txWriteStatus === 'success' && txWaitStatus === 'pending') {
     txContext = {
       operation: txLabel,
       hash: hash,
       status: TxStatus.LOADING,
+    };
+  }
+
+  if (txWriteStatus === 'success' && txWaitStatus === 'success') {
+    txContext = {
+      operation: txLabel,
+      hash: hash,
+      status: TxStatus.SUCCESS,
     };
   }
 

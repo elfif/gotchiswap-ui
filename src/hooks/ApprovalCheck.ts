@@ -1,9 +1,9 @@
-import { useEffect, useState, useCallback, useContext } from "react";
-import { ApprovableAsset, ApprovableWearable, SelectableAsset, Wearable } from "../types/types";
+import { useEffect, useState, useContext } from "react";
+import { ApprovableAsset } from "../types/types";
 import { TxStatus } from "../helpers/enums";
 import { aavegotchiAbi } from "../abis/aavegotchi";
 import { wearableAbi } from "../abis/wearables";
-import { multicall } from '@wagmi/core'
+import { multicall, type Config } from '@wagmi/core'
 import { convertAddressType, isWearable } from "../helpers/tools";
 import { useAccount } from "wagmi";
 import { CartContext } from "@/contexts/CartContext";
@@ -18,7 +18,7 @@ const wearableContract = {
   abi: wearableAbi
 }
 
-export const useApprovalCheck = (): { status: TxStatus } => {
+export const useApprovalCheck = (config: Config): { status: TxStatus } => {
   const [status, setStatus] = useState<TxStatus>(TxStatus.LOADING);
   const { address } = useAccount();
   const cartCtx = useContext(CartContext);
@@ -47,15 +47,14 @@ export const useApprovalCheck = (): { status: TxStatus } => {
         calls.push({
           ...wearableContract,
           functionName: 'isApprovedForAll',
-          args: [address, process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS]
+          args: [address, convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS)]
         })
       }
 
       try {
-        await multicall({
+        await multicall(config, {
           contracts: calls
         }).then((results) => {
-//          setStatus(TxStatus.SUCCESS);
           let isWearablesHandled = false
           const tmp: ApprovableAsset[] = []
           cartCtx.assets.forEach((asset, index) => {
@@ -72,20 +71,18 @@ export const useApprovalCheck = (): { status: TxStatus } => {
                 break
               case "Aavegotchi":
               case "Portal":
-                tmp.push({ ...asset, approved: results[index].result === process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS })
+                tmp.push({ ...asset, approved: results[index].result === convertAddressType(process.env.NEXT_PUBLIC_OTC_CONTRACT_ADDRESS) })
                 break
             }
           })
           cartCtx.setAssets(tmp)
         })
       } catch (error) {
-//        setStatus(TxStatus.ERROR);
+        console.log(error)
       }
     }
     processApproval()
-  }, [cartCtx, status, setStatus, aavegotchiContract, wearableContract, multicall, console.log]);
+  }, [config, cartCtx, address]);
 
   return { status };
 }
-
-

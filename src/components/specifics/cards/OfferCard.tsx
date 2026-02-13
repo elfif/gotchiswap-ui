@@ -33,11 +33,9 @@ export const OfferCard = (props: OfferCardProps) => {
   // We need to regroup and map assets from the sale object to the gotchis and portals.
   // We also need to map wearables to Wearable object.
   // That way all sale item can be displayed using existing cards.
+  debugger;
   for (const asset of props.sale.assets) {
-    if (
-      asset.class === AssetClass.ERC721 &&
-      asset.contract === process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS
-    ) {
+    if ( asset.class === AssetClass.ERC721 && asset.contract.toLowerCase() === process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS.toLowerCase() ) {
       const portal = props.portals.find(
         (portal) => portal.id === asset.id.toString()
       );

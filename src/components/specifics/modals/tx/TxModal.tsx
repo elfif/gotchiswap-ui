@@ -1,13 +1,12 @@
-import { Fragment, useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { classNames, shortenAddress } from "@/helpers/tools";
-import { Transition, Dialog } from "@headlessui/react";
+import { Transition, TransitionChild, Dialog } from "@headlessui/react";
 import { TxContextType } from "@/types/types";
 import { TxStatus } from "@/helpers/enums";
 import { StatusDisplay } from "./StatusDisplay";
 import { Loader } from "@/components/generics/loaders/Loader";
 
 export const TxModal = (props: { txContext: TxContextType }) => {
-  // const ctx = useContext(TxContext);
   const [open, setOpen] = useState(false);
 
   useEffect(() => {
@@ -23,10 +22,9 @@ export const TxModal = (props: { txContext: TxContextType }) => {
   }, [props.txContext]);
 
   return (
-    <Transition.Root show={open} as={Fragment}>
+    <Transition show={open}>
       <Dialog as="div" className="relative z-10" onClose={() => setOpen(false)}>
-        <Transition.Child
-          as={Fragment}
+        <TransitionChild
           enter="ease-out duration-300"
           enterFrom="opacity-0"
           enterTo="opacity-100"
@@ -35,12 +33,11 @@ export const TxModal = (props: { txContext: TxContextType }) => {
           leaveTo="opacity-0"
         >
           <div className="fixed inset-0 bg-purple-300 bg-opacity-75 transition-opacity" />
-        </Transition.Child>
+        </TransitionChild>
 
         <div className="fixed inset-0 z-10 overflow-y-auto">
           <div className="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
-            <Transition.Child
-              as={Fragment}
+            <TransitionChild
               enter="ease-out duration-300"
               enterFrom="opacity-0 translate-y-4 sm:translate-y-0 sm:scale-95"
               enterTo="opacity-100 translate-y-0 sm:scale-100"
@@ -82,10 +79,10 @@ export const TxModal = (props: { txContext: TxContextType }) => {
                   </button>
                 </div>
               </Dialog.Panel>
-            </Transition.Child>
+            </TransitionChild>
           </div>
         </div>
       </Dialog>
-    </Transition.Root>
+    </Transition>
   );
 };

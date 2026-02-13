@@ -1,12 +1,12 @@
-import { useAccount } from "wagmi";
+import { useConfig } from "wagmi";
 import { Loader } from "@/components/generics/loaders/Loader";
 import { useBuys } from "@/hooks/Buys";
 import { BuysListing } from "./BuysListing";
 
 export const BuysLoader = () => {
  
-  const { address, isConnected } = useAccount();
-  const { buys, isLoading } = useBuys()
+  const config = useConfig();
+  const { buys, isLoading } = useBuys(config)
      
   console.log(buys)
 

@@ -1,9 +1,11 @@
 import { TxStatus } from "@/helpers/enums";
 import { useApprovalCheck } from "@/hooks/ApprovalCheck";
 import { Loader } from "@/components/generics/loaders/Loader";
+import { useConfig } from "wagmi";
 
 export const CheckApproval = () => {
-  const { status } = useApprovalCheck();
+  const config = useConfig();
+  const { status } = useApprovalCheck(config);
 
   return (
     <>

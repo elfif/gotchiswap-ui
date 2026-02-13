@@ -7,8 +7,8 @@ import {
 } from "@/helpers/tools";
 import { PickerProps, Wearable } from "@/types/types";
 import _ from "lodash";
-import { useContext, useState } from "react";
-import { useAccount, useContractRead } from "wagmi";
+import { useContext, useEffect, useState } from "react";
+import { useAccount, useReadContract } from "wagmi";
 import { wearableAbi } from "@/abis/wearables";
 import { WearableCard } from "../cards/WearableCard";
 import { CartContext } from "@/contexts/CartContext";
@@ -20,36 +20,33 @@ export const WearablePicker = (props: PickerProps) => {
   const [wearables, setWearables] = useState<Wearable[]>([]);
   const wearableIds = [..._.range(1, 316), ..._.range(350, 370)];
   const addressArray = Array(wearableIds.length).fill(address);
-  const originalWearables: Wearable[] = [];
 
-  const { data, isSuccess, isError, status } = useContractRead({
+  const { data, isSuccess, isError, status } = useReadContract({
     address: convertAddressType(
       process.env.NEXT_PUBLIC_WEARABLE_CONTRACT_ADDRESS
     ),
     abi: wearableAbi,
     functionName: "balanceOfBatch",
     args: [addressArray, wearableIds.map(w => BigInt(w))],
-    onSuccess(data) {
-      if (data && Array.isArray(data) && data.length === wearableIds.length) {
-        const availableWearables = data
-          .map((v, i) => [wearableIds[i], parseInt(v)])
-          .filter((d) => d[1])
-          .map((i): Wearable => {
-            return {
-              id: i[0],
-              name: wearableNames[i[0]],
-              qty: i[1],
-              uri: getWearableUri(i[0]),
-              __typename: "wearable",
-            };
-          });
-        setWearables(availableWearables);
-        availableWearables.forEach((wearable) => {
-          originalWearables[wearable.id] = wearable;
-        });
-      }
-    },
   });
+
+  useEffect(() => {
+    if (data && Array.isArray(data) && data.length === wearableIds.length) {
+      const availableWearables = data
+        .map((v, i) => [wearableIds[i], parseInt(v)])
+        .filter((d) => d[1])
+        .map((i): Wearable => {
+          return {
+            id: i[0],
+            name: wearableNames[i[0]],
+            qty: i[1],
+            uri: getWearableUri(i[0]),
+            __typename: "wearable",
+          };
+        });
+      setWearables(availableWearables);
+    }
+  }, [data]);
 
   const handlePlusClick = (item: Wearable) => {
     // First we check that picker is enabled and the item we want to add to the selected items has available quantity
