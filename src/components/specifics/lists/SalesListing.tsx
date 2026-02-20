@@ -16,12 +16,13 @@ export const SalesListing = (props: { sales: SaleV2[] }) => {
       .filter(
         (saleItem) =>
           saleItem.class === AssetClass.ERC721 &&
-          saleItem.contract ===
-            process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS
+          saleItem.contract.toLowerCase() ===
+            process.env.NEXT_PUBLIC_AAVEGOTCHI_CONTRACT_ADDRESS.toLowerCase()
       )
       .map((saleItem) => saleItem.id.toString())
   );
 
+  debugger;
   const ids = idsArray.flat();
 
   const portalsAndGotchis = usePortalsByIdQuery({
