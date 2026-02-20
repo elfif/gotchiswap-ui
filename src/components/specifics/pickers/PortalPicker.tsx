@@ -16,10 +16,9 @@ export const PortalPicker = (props: PickerProps) => {
   const portals = usePortalsQuery({
     variables: { owner: address },
     context: { clientName: "core" },
+    fetchPolicy: "network-only",
     pollInterval: 6000,
   });
-
-  portals.refetch();
 
   const handleOnPickerClick = (portal: PortalFieldsFragment) => {
     if (props.enablePicker) {

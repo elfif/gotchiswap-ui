@@ -28,6 +28,7 @@ export const WearablePicker = (props: PickerProps) => {
     abi: wearableAbi,
     functionName: "balanceOfBatch",
     args: [addressArray, wearableIds.map(w => BigInt(w))],
+    query: { refetchOnMount: 'always' },
   });
 
   useEffect(() => {

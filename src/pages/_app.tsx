@@ -6,7 +6,6 @@ import { InjectApollo } from "@/components/hoc/apollo";
 import { InjectWagmi } from "@/components/hoc/wagmi";
 import { TxContextProvider } from "@/contexts/TxContext";
 import { ModalContextProvider } from "@/contexts/ModalContext";
-import { CartContextProvider } from "@/contexts/CartContext";
 import { ConnectedCheck } from "@/components/hoc/wallet";
 import { Header } from "@/components/hoc/header";
 
@@ -16,15 +15,13 @@ export default function App({ Component, pageProps }: AppProps) {
       <InjectWagmi>
         <Layout>
           <ConnectedCheck>
-            <CartContextProvider>
-              <TxContextProvider>
-                <ModalContextProvider>
-                  <Header>
-                    <Component {...pageProps} />
-                  </Header>
-                </ModalContextProvider>
-              </TxContextProvider>
-            </CartContextProvider>
+            <TxContextProvider>
+              <ModalContextProvider>
+                <Header>
+                  <Component {...pageProps} />
+                </Header>
+              </ModalContextProvider>
+            </TxContextProvider>
           </ConnectedCheck>
         </Layout>
       </InjectWagmi>
