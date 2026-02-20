@@ -17,13 +17,14 @@ export const GotchiPicker = (props: PickerProps) => {
   const gotchis = useGotchisQuery({
     variables: { owner: address },
     context: { clientName: "core" },
+    fetchPolicy: "network-only",
     pollInterval: 6000,
   });
-  gotchis.refetch();
   const ids = gotchis.data?.aavegotchis?.map((gotchi) => gotchi?.id);
   const svgs = useGotchisSvgQuery({
     variables: { ids: ids },
     context: { clientName: "svg" },
+    fetchPolicy: "network-only",
     pollInterval: 6000,
     onCompleted(data) {
       const gTmp: Gotchi[] = data?.aavegotchis?.map((gotchi) => {

@@ -1,0 +1,15 @@
+---
+alwaysApply: true
+---
+This project is a simple OTC exchange for Aavegotchi assets. It is built on top of the Aavegotchi ecosystem and allows users to trade Aavegotchis, wearables, and portals in a permissionless and trustless manner.
+
+It uses NextJs 16 and Typescript for the frontend.
+The main packages used are: 
+* NextJs 16
+* Typescript
+* TailwindCss
+* Wagmi.sh / viem
+* Reown AppKit / Wagmi Adapter
+* Apollo + Codegen for the graphql client.
+
+The project is hosted on Vercel and the code is open source.

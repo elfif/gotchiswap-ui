@@ -55,7 +55,9 @@ const New = () => {
   return (
     <ClientOnly>
       <OtcWizardContextProvider>
-        <NewContent />
+        <CartContextProvider>
+          <NewContent />
+        </CartContextProvider>
       </OtcWizardContextProvider>
     </ClientOnly>
   );
